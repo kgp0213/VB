@@ -1,0 +1,165 @@
+[Root]
+Most Recent Package=标准安装软件包 1
+
+
+[Package|标准安装软件包 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\Users\hufz\Desktop\VBcom\vb com_stm32\包 (2)
+
+[Package|标准安装软件包 1|Configure DAO ISAMs]
+Applicable=Yes
+Jet 2.x=No
+
+[Package|标准安装软件包 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|标准安装软件包 1|Files Found]
+
+[Package|标准安装软件包 1|Files Released]
+Help=
+
+[Package|标准安装软件包 1|Missing Dependency Information]
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\MinoltaColorSpaceControl.ocx=
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\CaControl.ocx=
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\VGControl.ocx=
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\SDK\CA200Srvr.dll=
+
+[Package|标准安装软件包 1|Out-of-Date Dependency Information]
+C:\Windows\SysWOW64\comdlg32.ocx=
+C:\Windows\SysWOW64\MSCOMCTL.OCX=
+
+[Package|标准安装软件包 1|Files Added]
+
+[Package|标准安装软件包 1|Files Removed]
+
+[Package|标准安装软件包 1|Files In Project]
+C:\Users\hufz\Desktop\VBcom\vb com_stm32\TKv1GP.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\oleaut32.dll=Yes
+C:\Windows\System32\olepro32.dll=Yes
+C:\Windows\System32\asycfilt.dll=Yes
+C:\Windows\System32\stdole2.tlb=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\VB6CHS.DLL=Yes
+C:\Program Files (x86)\Common Files\microsoft shared\DAO\DAO350.DLL=Yes
+C:\Windows\System32\MSJET35.DLL=Yes
+C:\Windows\System32\MSJTER35.DLL=Yes
+C:\Windows\System32\MSJINT35.DLL=Yes
+C:\Windows\System32\vbajet32.dll=Yes
+C:\Windows\System32\expsrv.dll=Yes
+C:\Windows\System32\MSRD2X35.DLL=Yes
+C:\Windows\System32\MSREPL35.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=Yes
+C:\Windows\System32\VB5DB.DLL=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\SDK\CA200Srvr.dll=Yes
+C:\Windows\SysWOW64\MSCOMCTL.OCX=Yes
+C:\Windows\SysWOW64\MSCMCCHS.DLL=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\VGControl.ocx=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\CaControl.ocx=Yes
+C:\Windows\SysWOW64\TABCTL32.OCX=Yes
+C:\Windows\SysWOW64\TABCTCHS.DLL=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\MinoltaColorSpaceControl.ocx=Yes
+C:\Windows\SysWOW64\mscomm32.ocx=Yes
+C:\Windows\SysWOW64\MSCOMCHS.DLL=Yes
+C:\Windows\SysWOW64\comdlg32.ocx=Yes
+C:\Windows\SysWOW64\CMDLGCHS.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Windows\System32\VB6STKIT.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Windows\SysWOW64\RICHTX32.OCX=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\GAPI32.DLL=Yes
+C:\Windows\SysWOW64\RCHTXCHS.DLL=Yes
+
+[Package|标准安装软件包 1|Configure Registry Files]
+Applicable=No
+
+[Package|标准安装软件包 1|Configure Remote Servers]
+Applicable=No
+
+[Package|标准安装软件包 1|Install Locations]
+C:\Users\hufz\Desktop\VBcom\vb com_stm32\TKv1GP.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\asycfilt.dll=$(WinSysPathSysFile)
+C:\Windows\System32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\VB6CHS.DLL=$(AppPath)
+C:\Program Files (x86)\Common Files\microsoft shared\DAO\DAO350.DLL=$(AppPath)
+C:\Windows\System32\MSJET35.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\MSJTER35.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\MSJINT35.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\vbajet32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\expsrv.dll=$(WinSysPathSysFile)
+C:\Windows\System32\MSRD2X35.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\MSREPL35.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\VB5DB.DLL=$(AppPath)
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\SDK\CA200Srvr.dll=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCTL.OCX=$(AppPath)
+C:\Windows\SysWOW64\MSCMCCHS.DLL=$(AppPath)
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\VGControl.ocx=$(AppPath)
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\CaControl.ocx=$(AppPath)
+C:\Windows\SysWOW64\TABCTL32.OCX=$(AppPath)
+C:\Windows\SysWOW64\TABCTCHS.DLL=$(AppPath)
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\MinoltaColorSpaceControl.ocx=$(AppPath)
+C:\Windows\SysWOW64\mscomm32.ocx=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCHS.DLL=$(AppPath)
+C:\Windows\SysWOW64\comdlg32.ocx=$(AppPath)
+C:\Windows\SysWOW64\CMDLGCHS.DLL=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Windows\SysWOW64\RICHTX32.OCX=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\GAPI32.DLL=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\RCHTXCHS.DLL=$(WinSysPath)
+
+[Package|标准安装软件包 1|Configure Shared Files]
+Applicable=Yes
+C:\Users\hufz\Desktop\VBcom\vb com_stm32\TKv1GP.exe=Yes
+C:\Windows\System32\VB6CHS.DLL=Yes
+C:\Program Files (x86)\Common Files\microsoft shared\DAO\DAO350.DLL=Yes
+C:\Windows\System32\VB5DB.DLL=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\SDK\CA200Srvr.dll=Yes
+C:\Windows\SysWOW64\MSCOMCTL.OCX=Yes
+C:\Windows\SysWOW64\MSCMCCHS.DLL=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\VGControl.ocx=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\CaControl.ocx=Yes
+C:\Windows\SysWOW64\TABCTL32.OCX=Yes
+C:\Windows\SysWOW64\TABCTCHS.DLL=Yes
+C:\Program Files (x86)\KONICAMINOLTA\CA-SDK\Control\MinoltaColorSpaceControl.ocx=Yes
+C:\Windows\SysWOW64\mscomm32.ocx=Yes
+C:\Windows\SysWOW64\MSCOMCHS.DLL=Yes
+C:\Windows\SysWOW64\comdlg32.ocx=Yes
+C:\Windows\SysWOW64\CMDLGCHS.DLL=Yes
+
+[Package|标准安装软件包 1|Distribution]
+Type=single
+Size=
+Title=TK01x
+
+[Package|标准安装软件包 1|Package]
+PackageFolder=C:\Users\hufz\Desktop\VBcom\vb com_stm32\包 (2)
+ProjectFolder=C:\Users\hufz\Desktop\VBcom\vb com_stm32
+ServerSideCab=
+File1=C:\Users\hufz\Desktop\VBcom\vb com_stm32\包 (2)\setup.exe
+File2=C:\Users\hufz\Desktop\VBcom\vb com_stm32\包 (2)\Setup.Lst
+File3=C:\Users\hufz\Desktop\VBcom\vb com_stm32\包 (2)\TKv1GP.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|标准安装软件包 1|IconGroups]
+Group0=TK01
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|标准安装软件包 1|TK01]
+Icon1=TKv1GP.exe
+Title1=TK01
+StartIn1=$(AppPath)
+Key1=Icon1
