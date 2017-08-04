@@ -1,0 +1,1 @@
+example.swf需要置于C盘根目录下

@@ -1,0 +1,49 @@
+VERSION 5.00
+Begin VB.PropertyPage ppg 
+   Caption         =   "通用"
+   ClientHeight    =   2610
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   3525
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   2610
+   ScaleWidth      =   3525
+   Begin VB.TextBox txtcap 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   360
+      TabIndex        =   1
+      Top             =   720
+      Width           =   2175
+   End
+   Begin VB.Label Label1 
+      Caption         =   "标题"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   480
+      TabIndex        =   0
+      Top             =   120
+      Width           =   735
+   End
+End
+Attribute VB_Name = "ppg"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True

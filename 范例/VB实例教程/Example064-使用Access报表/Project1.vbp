@@ -1,0 +1,37 @@
+Type=Exe
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\PWINNT\system32\stdole2.tlb#OLE Automation
+Reference=*\G{4AFFC9A0-5F99-101B-AF4E-00AA003F0F07}#9.0#0#D:\Microsoft Office\Office\MSACC9.OLB#Microsoft Access 9.0 Object Library
+Object={3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0; RICHTX32.OCX
+Object={50F16B18-467E-11D1-8271-00C04FC3183B}#1.0#0; shimgvw.dll
+Object={40710C17-4BC7-11D1-8B6F-080036B11A03}#1.0#0; docprop2.dll
+Object={D5288401-E6C5-11D1-BE7D-C63815000000}#1.0#0; CHARTWIZ.OCX
+Form=Form1.frm
+Startup="Form1"
+Command32=""
+Name="Project1"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionCompanyName="feitian"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+
+[MS Transaction Server]
+AutoRefresh=1
