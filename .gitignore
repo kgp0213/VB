@@ -8,6 +8,12 @@
 *.log
 *.SCC
 
+/vb_com_stm32_GAMMA/CA310_Sample
+/CA310_Sample
+/串口调试相关资料
+/vb_com_stm32_GAMMA/串口调试相关资料
+
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
