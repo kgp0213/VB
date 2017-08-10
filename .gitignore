@@ -7,6 +7,7 @@
 *.vbw
 *.log
 *.SCC
+*.csv
 
 /vb_com_stm32_GAMMA/CA310_Sample
 /CA310_Sample
