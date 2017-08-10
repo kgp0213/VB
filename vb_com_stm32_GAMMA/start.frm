@@ -72,6 +72,7 @@ Attribute VB_Exposed = False
 Private Sub Command1_Click()
 'Label1.Caption = "请稍等，联机中..."
 FormGamma.Show
+FormGamma.CommandConnect.SetFocus
 Unload Me
 End Sub
 

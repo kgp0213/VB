@@ -306,7 +306,7 @@ End Select
 
 
 Call frmSet.comSend(tep)
-FormGamma.CMD1Text.Text = m
+'FormGamma.CMD1Text.Text = m
 comsendGrayNum = m
 End Function
 

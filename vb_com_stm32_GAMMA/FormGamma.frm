@@ -1,16 +1,16 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "Msflxgrd.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Object = "{F1EB48E5-7E03-41F5-A4D0-CA86119EF992}#73.0#0"; "CaControl.ocx"
 Object = "{F0971ADD-CEF2-46B3-8D7F-C075DE0316B1}#18.0#0"; "MinoltaColorSpaceControl.ocx"
 Begin VB.Form FormGamma 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "Gamma V1.02 2017.1.20"
-   ClientHeight    =   6915
+   Caption         =   "Gamma2017.8.9"
+   ClientHeight    =   6825
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   13860
+   ClientWidth     =   13920
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -21,26 +21,54 @@ Begin VB.Form FormGamma
       Strikethrough   =   0   'False
    EndProperty
    Icon            =   "FormGamma.frx":0000
+   KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6915
-   ScaleWidth      =   13860
+   ScaleHeight     =   6825
+   ScaleWidth      =   13920
    StartUpPosition =   2  '屏幕中心
-   Begin VB.CheckBox ColorRgb2Bgr 
-      Caption         =   "R/B交换"
-      Height          =   255
-      Left            =   12000
-      TabIndex        =   46
-      Top             =   3240
-      Width           =   975
+   Begin VB.CommandButton Command_Saveas 
+      Caption         =   "Save as..."
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   9240
+      TabIndex        =   41
+      ToolTipText     =   "自定义保存目录"
+      Top             =   5760
+      Width           =   1215
+   End
+   Begin VB.TextBox Text_barcode 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   18
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   675
+      Left            =   9840
+      TabIndex        =   38
+      Text            =   "Barcode"
+      Top             =   3000
+      Width           =   3735
    End
    Begin VB.PictureBox Picture1 
       Height          =   1095
       Left            =   960
       ScaleHeight     =   1035
       ScaleWidth      =   7275
-      TabIndex        =   44
+      TabIndex        =   34
       Top             =   4800
       Width           =   7335
       Begin VB.Label Label3 
@@ -56,7 +84,7 @@ Begin VB.Form FormGamma
          EndProperty
          Height          =   615
          Left            =   360
-         TabIndex        =   45
+         TabIndex        =   35
          Top             =   240
          Width           =   6615
       End
@@ -74,34 +102,16 @@ Begin VB.Form FormGamma
       EndProperty
       Height          =   375
       Left            =   1440
-      TabIndex        =   43
+      TabIndex        =   33
       Top             =   3360
       Width           =   735
-   End
-   Begin VB.TextBox CMD1Text 
-      Enabled         =   0   'False
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   375
-      Left            =   12000
-      TabIndex        =   41
-      Text            =   "阶数回显"
-      Top             =   2640
-      Width           =   1095
    End
    Begin VB.TextBox TextView 
       BorderStyle     =   0  'None
       Height          =   1695
       Left            =   11160
       MultiLine       =   -1  'True
-      TabIndex        =   39
+      TabIndex        =   31
       Text            =   "FormGamma.frx":58C3A
       Top             =   4920
       Width           =   1935
@@ -119,14 +129,14 @@ Begin VB.Form FormGamma
       EndProperty
       Height          =   1215
       Left            =   60
-      TabIndex        =   35
+      TabIndex        =   27
       Top             =   2640
       Width           =   2295
       Begin VB.CommandButton comSett 
          Caption         =   "COM"
          Height          =   375
          Left            =   120
-         TabIndex        =   38
+         TabIndex        =   30
          Top             =   720
          Width           =   615
       End
@@ -144,7 +154,7 @@ Begin VB.Form FormGamma
          Height          =   375
          Left            =   960
          Style           =   1  'Graphical
-         TabIndex        =   37
+         TabIndex        =   29
          Top             =   240
          Width           =   1215
       End
@@ -161,7 +171,7 @@ Begin VB.Form FormGamma
          EndProperty
          Height          =   375
          Left            =   120
-         TabIndex        =   36
+         TabIndex        =   28
          Top             =   240
          Width           =   675
       End
@@ -180,74 +190,14 @@ Begin VB.Form FormGamma
          Width           =   300
       End
    End
-   Begin VB.CheckBox gammaTestMode 
-      Caption         =   "四色模式"
-      Height          =   255
-      Left            =   12000
-      TabIndex        =   34
-      Top             =   3000
-      Width           =   1215
-   End
    Begin VB.Frame Frame2 
-      Caption         =   "自定义Gamma画面"
+      Caption         =   "设置"
       Height          =   2295
       Left            =   6960
-      TabIndex        =   29
+      TabIndex        =   23
       Top             =   120
       Width           =   6855
-      Begin VB.CheckBox CheckgrayValueText 
-         Caption         =   "锁定"
-         Height          =   255
-         Left            =   5760
-         TabIndex        =   42
-         Top             =   1560
-         Width           =   975
-      End
-      Begin VB.CommandButton CommandmanualMeasure 
-         Caption         =   "ManualMeasure"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   5040
-         TabIndex        =   40
-         Top             =   240
-         Width           =   1695
-      End
-      Begin VB.TextBox grayValueText 
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   11.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   120
-         MaxLength       =   1000
-         TabIndex        =   30
-         Text            =   "00,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240,255"
-         Top             =   960
-         Width           =   6615
-      End
-      Begin VB.Label Label4 
-         Caption         =   "Label4"
-         Height          =   255
-         Left            =   4200
-         TabIndex        =   48
-         Top             =   720
-         Width           =   1095
-      End
-      Begin VB.Label Label2 
-         Caption         =   "Readme"
+      Begin VB.TextBox Text_standard 
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -258,13 +208,39 @@ Begin VB.Form FormGamma
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   240
+         Left            =   2520
+         TabIndex        =   39
+         Top             =   240
+         Width           =   2655
+      End
+      Begin VB.CheckBox CheckgrayValueText 
+         Caption         =   "锁定"
+         Height          =   255
+         Left            =   5640
          TabIndex        =   32
-         Top             =   1680
-         Width           =   6375
+         Top             =   240
+         Width           =   975
+      End
+      Begin VB.Label Label_readme 
+         AutoSize        =   -1  'True
+         Caption         =   "Readme"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   270
+         Left            =   240
+         TabIndex        =   25
+         Top             =   840
+         Width           =   900
       End
       Begin VB.Label laberGrayinfo 
-         Caption         =   "当前阶数："
+         Caption         =   "标准Barcode："
          BeginProperty Font 
             Name            =   "微软雅黑"
             Size            =   15.75
@@ -276,16 +252,16 @@ Begin VB.Form FormGamma
          EndProperty
          Height          =   375
          Left            =   240
-         TabIndex        =   31
+         TabIndex        =   24
          Top             =   240
          Width           =   4095
       End
    End
    Begin MinoltaCaControl.CaControl CaControl1 
       Height          =   555
-      Left            =   7080
-      TabIndex        =   27
-      Top             =   3120
+      Left            =   6960
+      TabIndex        =   21
+      Top             =   2520
       Width           =   2595
       _ExtentX        =   3625
       _ExtentY        =   873
@@ -302,10 +278,10 @@ Begin VB.Form FormGamma
       EndProperty
       Height          =   255
       IMEMode         =   3  'DISABLE
-      Left            =   7680
-      TabIndex        =   24
+      Left            =   13200
+      TabIndex        =   18
       Text            =   "5"
-      Top             =   2640
+      Top             =   5160
       Width           =   375
    End
    Begin VB.CommandButton CommandStop 
@@ -320,10 +296,10 @@ Begin VB.Form FormGamma
          Strikethrough   =   0   'False
       EndProperty
       Height          =   555
-      Left            =   12000
-      TabIndex        =   20
-      Top             =   3720
-      Width           =   1575
+      Left            =   12600
+      TabIndex        =   16
+      Top             =   3840
+      Width           =   975
    End
    Begin VB.Frame FrameRefData 
       Caption         =   "Ref. xyLv"
@@ -389,7 +365,7 @@ Begin VB.Form FormGamma
       Begin MSComCtl2.UpDown UpDownCurrentData 
          Height          =   195
          Left            =   2040
-         TabIndex        =   21
+         TabIndex        =   17
          Top             =   0
          Width           =   240
          _ExtentX        =   423
@@ -520,109 +496,6 @@ Begin VB.Form FormGamma
       _Version        =   393216
       Enabled         =   -1  'True
    End
-   Begin VB.Frame FrameMsrSpec 
-      Caption         =   "Measurement Spec."
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   1035
-      Left            =   9720
-      TabIndex        =   16
-      Top             =   2520
-      Width           =   1995
-      Begin VB.OptionButton Option16 
-         Caption         =   "16"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   120
-         TabIndex        =   23
-         Top             =   240
-         Value           =   -1  'True
-         Width           =   615
-      End
-      Begin VB.OptionButton Option256 
-         Caption         =   "256"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   720
-         TabIndex        =   22
-         Top             =   600
-         Width           =   735
-      End
-      Begin VB.OptionButton Option128 
-         Caption         =   "128"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   120
-         TabIndex        =   19
-         Top             =   600
-         Width           =   675
-      End
-      Begin VB.OptionButton Option32 
-         Caption         =   "32"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   720
-         TabIndex        =   18
-         Top             =   240
-         Width           =   615
-      End
-      Begin VB.OptionButton Option64 
-         Caption         =   "64"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   1320
-         TabIndex        =   17
-         Top             =   240
-         Width           =   615
-      End
-   End
    Begin VB.CommandButton CommandMeasure 
       Caption         =   "Measure"
       BeginProperty Font 
@@ -635,10 +508,10 @@ Begin VB.Form FormGamma
          Strikethrough   =   0   'False
       EndProperty
       Height          =   555
-      Left            =   10080
+      Left            =   9960
       TabIndex        =   1
-      Top             =   3720
-      Width           =   1575
+      Top             =   3840
+      Width           =   2415
    End
    Begin VB.CommandButton CommandSave 
       Caption         =   "Save..."
@@ -654,22 +527,24 @@ Begin VB.Form FormGamma
       Height          =   435
       Left            =   9240
       TabIndex        =   0
-      Top             =   6120
+      ToolTipText     =   "默认数据以时间命名保存于当前目录"
+      Top             =   5160
       Width           =   1215
    End
    Begin MSComDlg.CommonDialog cmdDiag 
-      Left            =   9120
-      Top             =   3960
+      Left            =   13320
+      Top             =   5880
       _ExtentX        =   847
       _ExtentY        =   847
       _Version        =   393216
    End
    Begin VB.CommandButton xlsClear 
       Caption         =   "清除"
+      Enabled         =   0   'False
       Height          =   375
       Left            =   9240
-      TabIndex        =   33
-      Top             =   5400
+      TabIndex        =   26
+      Top             =   6240
       Width           =   1215
    End
    Begin MSFlexGridLib.MSFlexGrid grdDataList 
@@ -681,7 +556,7 @@ Begin VB.Form FormGamma
       _ExtentX        =   15901
       _ExtentY        =   4789
       _Version        =   393216
-      Rows            =   1041
+      Rows            =   10401
       Cols            =   13
       SelectionMode   =   1
       AllowUserResizing=   1
@@ -711,17 +586,25 @@ Begin VB.Form FormGamma
    Begin MinoltaxyControl.xyControl xyControl1 
       Height          =   4275
       Left            =   2160
-      TabIndex        =   28
+      TabIndex        =   22
       Top             =   -120
       Width           =   4755
       _ExtentX        =   8387
       _ExtentY        =   7541
    End
+   Begin VB.Label Label2 
+      Caption         =   "当前Barcode："
+      Height          =   255
+      Left            =   9840
+      TabIndex        =   40
+      Top             =   2760
+      Width           =   1575
+   End
    Begin VB.Label Label5 
       Caption         =   "YJ2017"
       Height          =   375
       Left            =   13200
-      TabIndex        =   49
+      TabIndex        =   37
       Top             =   6600
       Width           =   615
    End
@@ -738,7 +621,7 @@ Begin VB.Form FormGamma
       EndProperty
       Height          =   375
       Left            =   9480
-      TabIndex        =   47
+      TabIndex        =   36
       Top             =   4440
       Width           =   4095
    End
@@ -755,9 +638,9 @@ Begin VB.Form FormGamma
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   8040
-      TabIndex        =   26
-      Top             =   2640
+      Left            =   13200
+      TabIndex        =   20
+      Top             =   5520
       Width           =   615
    End
    Begin VB.Label LabelWait 
@@ -773,9 +656,9 @@ Begin VB.Form FormGamma
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   7200
-      TabIndex        =   25
-      Top             =   2640
+      Left            =   13200
+      TabIndex        =   19
+      Top             =   4920
       Width           =   495
    End
 End
@@ -794,7 +677,7 @@ Public WithEvents objCaControl As CaControl
 Attribute objCaControl.VB_VarHelpID = -1
 'Public WithEvents objVGControl As VGControl
 
-Dim typMeasurementData(1040) As TypeMeasurementData
+'Dim typMeasurementData(1040) As TypeMeasurementData
 Dim lCount As Long
 
 Dim lMeasureMode As Long
@@ -810,7 +693,7 @@ Const NO_DATA As Long = -9999
 Dim ListNo As Integer               'DataNo.
 Dim SelectDataName As String        'ModeName
 Dim bStop As Boolean                'Stop Flag
-
+Dim SaveasFlag As Boolean
 Dim Mydata(300, 4) As Single
 Dim sRedGamma(256) As Single
 Dim sGreenGamma(256) As Single
@@ -819,23 +702,18 @@ Dim sWhiteGamma(256) As Single
 Dim lMeasureSpec As Long
 Dim lSelectedRow0 As Long
 Dim lSelectedRow1 As Long
+Dim connectCA310ok As Boolean
 
-
-Const MSR_16 As Long = 16
-Const MSR_32 As Long = 32
-Const MSR_64 As Long = 64
-Const MSR_128 As Long = 128
-Const MSR_256 As Long = 256
 Dim WaitTime As Double
 
 Sub SetGraphData()
     Dim i As Integer, j As Integer
     
-    If lMeasureSpec = MSR_256 Then
-        j = lMeasureSpec - 1
-    Else
+    'If lMeasureSpec = MSR_256 Then
+   '     j = lMeasureSpec - 1
+   ' Else
         j = lMeasureSpec
-    End If
+    'End If
     For i = 0 To j
         Mydata(i + 1, 1) = sRedGamma(i)
         Mydata(i + 1, 2) = sGreenGamma(i)
@@ -861,9 +739,9 @@ Sub GridInit()
     grdDataList.HighLight = flexHighlightAlways
     grdDataList.Row = 0
     grdDataList.Col = 0: grdDataList.Text = "No."
-    grdDataList.Col = 1: grdDataList.Text = "X"
-    grdDataList.Col = 2: grdDataList.Text = "Y"
-    grdDataList.Col = 3: grdDataList.Text = "Z"
+    grdDataList.Col = 1: grdDataList.Text = "Barcode"
+    grdDataList.Col = 2: grdDataList.Text = "reserve1"
+    grdDataList.Col = 3: grdDataList.Text = "reserve2"
     grdDataList.Col = 4: grdDataList.Text = "x"
     grdDataList.Col = 5: grdDataList.Text = "y"
     
@@ -871,37 +749,33 @@ Sub GridInit()
     ' grdDataList.Col = 6: grdDataList.Text = "Lv"
     grdDataList.Col = 6: grdDataList.Text = gstrLvOrEv
     
-    grdDataList.Col = 7: grdDataList.Text = "ud"
-    grdDataList.Col = 8: grdDataList.Text = "vd"
-    grdDataList.Col = 9: grdDataList.Text = "T"
-    grdDataList.Col = 10: grdDataList.Text = "duv"
-    grdDataList.Col = 11: grdDataList.Text = "Date"
-    grdDataList.Col = 12: grdDataList.Text = "Time"
+    'grdDataList.Col = 7: grdDataList.Text = "ud"
+    'grdDataList.Col = 8: grdDataList.Text = "vd"
+    'grdDataList.Col = 9: grdDataList.Text = "T"
+    'grdDataList.Col = 10: grdDataList.Text = "duv"
+    grdDataList.Col = 8: grdDataList.Text = "Date"
+    grdDataList.Col = 9: grdDataList.Text = "Time"
     
     grdDataList.ColWidth(0) = 420 '380   'No
     
-    grdDataList.ColWidth(1) = 600   'X
-    grdDataList.ColWidth(2) = 600   'Y
-    grdDataList.ColWidth(3) = 600   'Z
+    grdDataList.ColWidth(1) = 1000   'Barcode
+    grdDataList.ColWidth(2) = 400   'reserve1
+    grdDataList.ColWidth(3) = 400   'reserve2
     
     grdDataList.ColWidth(4) = 600   'x
     grdDataList.ColWidth(5) = 600   'y
     grdDataList.ColWidth(6) = 950   'Lv
     
-    grdDataList.ColWidth(7) = 600   'ud
-    grdDataList.ColWidth(8) = 600   'vd
-    
-    grdDataList.ColWidth(9) = 600   'T
-    grdDataList.ColWidth(10) = 580   'duv
-    grdDataList.ColWidth(11) = 950  'Date
-    grdDataList.ColWidth(12) = 700   'Time
+    grdDataList.ColWidth(7) = 400   '--
+    grdDataList.ColWidth(8) = 1050  'Date
+    grdDataList.ColWidth(9) = 1000   'Time
     
     grdDataList.Col = 0
-    For i = 1 To 1040
+    For i = 1 To 10400
         grdDataList.Row = i
         grdDataList.Text = Format(i)
     Next i
-    
+   
     ListNo = 1
 
     grdDataList.TopRow = 1
@@ -909,30 +783,39 @@ Sub GridInit()
 End Sub
 Sub SaveData()
 
-    Dim dd(1040, 12) As String
+    Dim dd(5040, 10) As String   '
     Dim i As Integer, j As Integer
     Dim fm As String, fnum As Integer, fname As String
 
     For i = 1 To ListNo - 1
         grdDataList.Row = i
-        For j = 1 To 12
+        For j = 1 To 10
             grdDataList.Col = j
             dd(i, j) = grdDataList.Text
         Next j
     Next i
     
-    On Error Resume Next
-    cmdDiag.CancelError = True
-    cmdDiag.FileName = ""
-    cmdDiag.Filter = "Data Files (*.csv)|*.csv"
-    cmdDiag.FilterIndex = 2
-    cmdDiag.Action = 2
-    If Err.Number = cdlCancel Then
-        Exit Sub
-    Else
-        fm = cmdDiag.FileName
-        fm = Mid$(fm, 1, InStr(1, fm, ".")) + "csv"
-    End If
+    If (SaveasFlag) Then
+    
+        On Error Resume Next
+        cmdDiag.CancelError = True
+         cmdDiag.FileName = ""
+         cmdDiag.Filter = "Data Files (*.csv)|*.csv"
+        cmdDiag.FilterIndex = 2
+        cmdDiag.Action = 2
+     
+         If Err.Number = cdlCancel Then
+             Exit Sub
+          Else
+        'fm = App.Path + "\" + Format(Now(), "yyyy-MM-dd") + Format(Now(), "-HHmmss") + "gamma.csv"
+             fm = cmdDiag.FileName
+             fm = Mid$(fm, 1, InStr(1, fm, ".")) + "csv"
+          End If
+       Else
+       fm = App.Path + "\" + Format(Now(), "yyyy-MM-dd") + Format(Now(), "-HHmmss") + "gamma.csv"
+            ' fm = cmdDiag.FileName
+             'fm = Mid$(fm, 1, InStr(1, fm, ".")) + "csv"
+     End If
     
     fname = Dir$(fm, vbNormal Or vbReadOnly)
     If fname <> "" Then
@@ -946,29 +829,19 @@ Sub SaveData()
     
     ' 021225
     ' Write #fnum, "No.", "X", "Y", "Z", "x", "y", "Lv", "ud", "vd", "T", "duv", "Date", "Time"
-    Write #fnum, "No.", "X", "Y", "Z", "x", "y", gstrLvOrEv, "ud", "vd", "T", "duv", "Date", "Time"
+    Write #fnum, "No.", "Barcode", "--", "--", "x", "y", gstrLvOrEv, "-", "Date", "Time"
     
     For i = 1 To ListNo - 1
         Print #fnum, Format(i, "000"); ",";
-        For j = 1 To 11
+        For j = 1 To 9
             Print #fnum, dd(i, j); ",";
         Next j
-        Print #fnum, dd(i, 12)
+        Print #fnum, dd(i, 10)
     Next i
     
-    Write #fnum, "No.", "Red", "Green", "Blue", "White"
     
-    If lMeasureSpec = MSR_256 Then
-        j = lMeasureSpec - 1
-    Else
-        j = lMeasureSpec
-    End If
-    
-    For i = 0 To j
-        Print #fnum, Format(i, "000"); ",";
-        Print #fnum, sRedGamma(i); ","; sGreenGamma(i); ","; sBlueGamma(i); ","; sWhiteGamma(i)
-    Next i
     Close fnum
+    SaveasFlag = False
 End Sub
 
 Private Sub CaControl1_Update()
@@ -1004,18 +877,31 @@ Private Sub CaControl1_Update()
 End Sub
 
 
-Private Sub Check1_Click()
-
-End Sub
-
 Private Sub CheckgrayValueText_Click()
-grayValueText.Locked = Not grayValueText.Locked
+'锁定标准barcode输入框
+Text_standard.Locked = Not Text_standard.Locked
+    If (Text_standard.Locked = False) Then
+    Text_standard.SetFocus
+    End If
+
 End Sub
 
-Private Sub Colorrgb2bgr_Click()
-If ColorRgb2Bgr.Value = 1 Then
-rgbChange = True
-Else: rgbChange = False
+Private Sub Command_Saveas_Click()
+SaveasFlag = True
+SaveData
+End Sub
+
+Private Sub Text_standard_KeyPress(KeyAscii As Integer)
+If (KeyAscii = 13) And (Len(Text_standard.Text) > 6) Then   'MsgBox "标准Barcode已录入"
+
+   
+ CheckgrayValueText.Visible = True
+ laberGrayinfo.Caption = "BC式样锁定："
+ MsgBox "标准Barcode已录入"
+CheckgrayValueText.Visible = False
+ Text_standard.Locked = True
+ Text_barcode.Enabled = True
+ Text_barcode.SetFocus
 End If
 End Sub
 
@@ -1051,17 +937,9 @@ Private Sub CommandCloseConnect_Click()
 Command0Cal.Enabled = False
 CommandMeasure.Enabled = False
 'CheckgrayValueText.Value = Checked
-CommandmanualMeasure.Enabled = False
+'CommandmanualMeasure.Enabled = False
 TextView.Text = "确认数据保存后再关闭程序"
 End Sub
-
-
-Private Sub sCommandConnect_Click()
-'SCommandConnect_Click
-'FormCa310Connect.Label1.Caption = "正在连接CA310, 请等待联机完成..."
-'FormCa310Connect.Show 'vbModal
-End Sub
-
 
 Public Sub CommandConnect_Click()
 'Me.Hide
@@ -1072,25 +950,29 @@ Public Sub CommandConnect_Click()
 cmdBusyFlag = True
 Label3.Caption = "CA310联机中，请静候连接完成..."
 DoEvents
-
+'-------------------------
 StartMain
 CommandConnect.BackColor = &H8000000F
-CommandmanualMeasure.Enabled = True
+'CommandmanualMeasure.Enabled = False
 Command0Cal.Enabled = True
 CommandCloseConnect.Enabled = True
 'Unload FormCa310Connect
 Picture1.Visible = False   ' 结束提示： 正在连接CA310, 请等待联机完成..."
-CommandMeasure.Enabled = True
+'CommandMeasure.Enabled = True
 cmdBusyFlag = False
+CommandSave.Enabled = True
+connectCA310ok = True
+CheckgrayValueText.Enabled = True
+CheckgrayValueText.SetFocus
+'Text_barcode.Enabled = True
+'FormGamma.Text_barcode.SetFocus
 End Sub
-
-
 
 Private Sub CommandMeasure_Click()
     Dim bResult As Boolean
-    CMD1Text.FontSize = 12
+    'CMD1Text.FontSize = 12
     
-    gammaTestMode.Enabled = False
+    'gammaTestMode.Enabled = False
     ' 030407
     If objCa.DisplayMode <> COLOR_MODE Then
         objCa.DisplayMode = DSP_LXY
@@ -1102,17 +984,12 @@ Private Sub CommandMeasure_Click()
     bStop = False
     CommandMeasure.Enabled = False
     CommandStop.Enabled = True
-    FrameMsrSpec.Enabled = False
-    CommandmanualMeasure.Enabled = False
+    
     DoEvents
     
     MeasureGamma
-    CommandmanualMeasure.Enabled = True
-    CommandMeasure.Enabled = True
+    
     CommandStop.Enabled = False
-    'cmdWin.Enabled = True
-    FrameMsrSpec.Enabled = True
-    gammaTestMode.Enabled = True
     cmdBusyFlag = False
 
 End Sub
@@ -1133,13 +1010,11 @@ End Sub
 Private Sub comSett_Click()
 frmSet.Show  'vbModal
 End Sub
+Private Sub FormGamma_KeyDown(KeyCode As Integer, Shift As Integer)
+MsgBox KeyCode
+End Sub
 
 Private Sub Form_Activate()
-
-    'typCurrentMeasurementData.lColorStatus = NO_DATA
-    'typCurrentMeasurementData.lColorStatus = NO_DATA
-    'typCurrentMeasurementData.lColorStatus = NO_DATA
-    'SetCurrentData
 
     LabelRefData(0).Caption = Round(typCurrentRefereceData.sRefx, 4)
     LabelRefData(1).Caption = Round(typCurrentRefereceData.sRefy, 4)
@@ -1165,11 +1040,17 @@ Private Sub Form_Activate()
 End Sub
 Private Sub Form_Load()
 dubuggFlag = 0
+SaveasFlag = False
 m = 0
+'Coln = 0
 grayNumflag = 0
 cmdBusyFlag = True
 'Call grayValueText_Change
 'Unload frmSet
+'MeasureGamma
+CheckgrayValueText.Enabled = False
+FrameRefData.Enabled = False
+'Label4.Caption = ""
 Set mycomm = frmSet.MSComm1
 If (mycomm.PortOpen = True) Then
     
@@ -1190,20 +1071,28 @@ If (mycomm.PortOpen = True) Then
        End If
 End If
 
-Label2.Caption = "上述数据以0开始、以255结尾，数据间以逗号分隔"
+'Label2.Caption = "上述数据以0开始、以255结尾，数据间以逗号分隔"
 'Me.AcceptButton = Me.CommandCconnect
 'Me.CommandConnect.SetFocus
 CommandConnect.BackColor = vbRed
 Command0Cal.Enabled = False
 CommandMeasure.Enabled = False
 CheckgrayValueText.Value = Checked
-CommandmanualMeasure.Enabled = False
+'CommandmanualMeasure.Enabled = False
 CommandCloseConnect.Enabled = False
 'Picture1.Visible = False
- ColorRgb2Bgr.Enabled = False
+' ColorRgb2Bgr.Enabled = False
  rgbChange = False
- 
+Label_readme = "首先(连接CA310)，然后：" & vbCrLf & "1, 解锁并输入当前批次任一Barcode作为标准后再次锁定" & vbCrLf & _
+                "2, 确认LCD显示后，放置好CA310探头" & vbCrLf & _
+                "3, 扫描产品Barcode之后，会自动进行测量"
 Label5.Caption = App.Major & "." & App.Minor & "." & App.Revision
+GridInit
+CommandConnect.Enabled = True
+'CommandConnect.SetFocus
+Text_barcode.Text = ""
+CommandSave.Enabled = False
+Text_barcode.Enabled = False
 End Sub
 
 Public Sub xForm_Initialize()
@@ -1250,7 +1139,8 @@ E:
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-    
+   SaveData  '直接退出自动保存数据
+   MsgBox "数据已经以时间命名保存于当前程序目录", vbOKOnly  '给出保存提示
    Unload frmSet
    Unload FormStart
     
@@ -1270,7 +1160,7 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
    Unload Me
  '  ExitProcess 0
     End
-    
+ 
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
   End
@@ -1373,120 +1263,9 @@ Public Sub SetCurrentData()
     End Select
     
 End Sub
+'
 
 
-
-
-Private Sub gammaTestMode_Click()
-If gammaTestMode.Value = 1 Then
-ColorRgb2Bgr.Enabled = True
-Else: ColorRgb2Bgr.Enabled = False
-End If
-End Sub
-
-Private Sub grayValueText_Change()
-Dim i, j As Integer
-Dim a
-Dim b$()
-Dim c$()
-
- 
-  a = grayValueText.Text
-  a = Replace(a, " ", "")   '去空格
-  
-  
-  If a = "" Then   '防止空数据
-    grayValueText.Text = "0,"
-    grayValueText.SelStart = Len(grayValueText.Text)
-     a = "0"
-  End If
-  
-  b = Split(a, ",", -1, 1)  '数组a的数据去逗号后填入b
-  
-  'ReDim gstr(UBound(b))
-  
-  m = UBound(b)   '获取数组b的最大下标
-    
-  ReDim c(m)
-   
-  j = 0
-  i = 0
-For i = 0 To m  '轮询把不是空的数据传到数组c
- 
-     If (b(i) <> "") Then
-  
-     c(j) = b(i)
-     j = j + 1
-     Else
-     End If
- 
-Next
-    
-    
-  Do While (c(m) = "")  '把数组c不为空的最大下标找出来
-  m = m - 1
-  If m = 0 Then
- ' m = 1
-  Exit Do
-  End If
-  Loop
-  
-  
-  
-  
-  ReDim Preserve c(m)  '缩小数组大小，把数组结尾的空数组舍弃掉
-  ReDim gstr(m)        ',确定数组gstr大小
-
- 
-For i = 0 To m   ' 把处理后的数据送到gstr
-                            '判断是否为10进制数据
-     If (c(i) Like "*[!0-9, ]*") Then
-    ' MsgBox "数据格式非法", vbExclamation + vbOKOnly, "友情提醒"
-    Label4.Caption = "数据格式非法"
-     CommandmanualMeasure.Enabled = False
-     Exit Sub
-     End If
-     
-     gstr(i) = Val(c(i))
-     If gstr(i) > 255 Then
-     'MsgBox "数据超范围，请修改使其处于范围（0～255）", vbExclamation + vbOKOnly, "友情提醒"
-     Label4.Caption = "数据超范围"
-     CommandmanualMeasure.Enabled = False
-     Exit Sub
-     End If
-         
-Next
-
-If Not cmdBusyFlag Then
-CommandmanualMeasure.Enabled = True
-Else: CommandmanualMeasure.Enabled = False
-End If
-Label4.Caption = ""
-End Sub
-
-Private Sub grayShow_Click()
- '判断数据长度
- If m < 9 Then
- MsgBox "数据过少", vbExclamation + vbOKOnly, "友情提醒"
- 'Exit Function
- Exit Sub
- End If
-laberGrayinfo.Caption = "当前阶数 " + CStr(gstr(grayNumflag)) + "/255" 'CStr
-
-
-Dim tep As String
-tep = "5A55120400" + CStr(Replace((Format(Hex(gstr(grayNumflag)), "@@")), " ", "0")) + "00AA"
-FormGamma.CMD1Text.Text = gstr(grayNumflag)
-Call frmSet.comSend(tep)
-
-''0~9转换成16进制时，转成00 01~09的格式，以符合协议要求
-
-If grayNumflag < m Then
-grayNumflag = grayNumflag + 1
-Else
-grayNumflag = 0
-End If
-End Sub
 
 Private Sub grdDataList_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     lSelectedRow0 = grdDataList.MouseRow
@@ -1597,36 +1376,36 @@ Sub SetGammaData(ByVal LisNo As Integer, lClr As Long)
     grdDataList.Row = LisNo
     
     grdDataList.Col = 1
-    grdDataList.Text = Format(typCurrentMeasurementData.Sx, "0.00")
-    grdDataList.Col = 2
-    grdDataList.Text = Format(typCurrentMeasurementData.Sy, "0.00")
-    grdDataList.Col = 3
-    grdDataList.Text = Format(typCurrentMeasurementData.Sz, "0.00")
+    grdDataList.Text = Text_barcode.Text
+   ' grdDataList.Col = 2
+   ' grdDataList.Text = Format(typCurrentMeasurementData.Sy, "0.00")
+   ' grdDataList.Col = 3
+   ' grdDataList.Text = Format(typCurrentMeasurementData.Sz, "0.00")
     grdDataList.Col = 4
     grdDataList.Text = Format(typCurrentMeasurementData.ssx, FORMAT_SXY)
     grdDataList.Col = 5
     grdDataList.Text = Format(typCurrentMeasurementData.ssy, FORMAT_SXY)
     grdDataList.Col = 6
     grdDataList.Text = Format(typCurrentMeasurementData.sLv, FORMAT_LV)
-    grdDataList.Col = 7
-    grdDataList.Text = Format(typCurrentMeasurementData.sud, FORMAT_SXY)
+   ' grdDataList.Col = 7
+   ' grdDataList.Text = Format(typCurrentMeasurementData.sud, FORMAT_SXY)
+   ' grdDataList.Col = 8
+   ' grdDataList.Text = Format(typCurrentMeasurementData.svd, FORMAT_SXY)
+   ' grdDataList.Col = 9
+   ' If typCurrentMeasurementData.LT = -1 Then
+   '     grdDataList.Text = "-"
+   ' Else
+   '     grdDataList.Text = Format(typCurrentMeasurementData.LT, "00000")
+   ' End If
+   ' grdDataList.Col = 10
+   ' If typCurrentMeasurementData.LT = -1 Then
+   '     grdDataList.Text = "-"
+   ' Else
+   '     grdDataList.Text = Format(typCurrentMeasurementData.sduv, "+.000;-.000")
+   ' End If
     grdDataList.Col = 8
-    grdDataList.Text = Format(typCurrentMeasurementData.svd, FORMAT_SXY)
-    grdDataList.Col = 9
-    If typCurrentMeasurementData.LT = -1 Then
-        grdDataList.Text = "-"
-    Else
-        grdDataList.Text = Format(typCurrentMeasurementData.LT, "00000")
-    End If
-    grdDataList.Col = 10
-    If typCurrentMeasurementData.LT = -1 Then
-        grdDataList.Text = "-"
-    Else
-        grdDataList.Text = Format(typCurrentMeasurementData.sduv, "+.000;-.000")
-    End If
-    grdDataList.Col = 11
     grdDataList.Text = Format(typCurrentMeasurementData.dateColorData, "yyyy/mm/dd")
-    grdDataList.Col = 12
+    grdDataList.Col = 9
     grdDataList.Text = Format(typCurrentMeasurementData.timeColorData, "hh:mm:ss")
 
     xyControl1.AddXYGraphData CLng(ListNo)
@@ -1666,17 +1445,9 @@ Public Sub SetGraph()
     picGraph.DrawWidth = 1
     
     ' Display Item Count
-    If lMeasureSpec = MSR_16 Then
-        MaxDataNo = MSR_16 + 1      '17 data
-    ElseIf lMeasureSpec = MSR_32 Then
-        MaxDataNo = MSR_32 + 1      '33 data
-    ElseIf lMeasureSpec = MSR_64 Then
-        MaxDataNo = MSR_64 + 1      '65data
-    ElseIf lMeasureSpec = 128 Then
-        MaxDataNo = MSR_128 + 1     '129data
-    Else
-        MaxDataNo = MSR_256         '256data
-    End If
+   ' If lMeasureSpec = MSR_16 Then
+    '    MaxDataNo = MSR_16 + 1      '17 data
+   
 
     ' Draw Box
     picGraph.Line (xoff, 50)-(xw + xoff, 950), , B
@@ -1789,178 +1560,8 @@ ER:
     Return
 End Sub
 
-Private Sub CommandmanualMeasure_Click()
-grayValueText_Change
-If Label4.Caption <> "" Then   '若Label4.Caption不为空则说明数据异常
-Exit Sub
-End If
 
-   grayValueText.Enabled = False
-     bStop = False
-    CommandMeasure.Enabled = False
-    CommandStop.Enabled = True
-    FrameMsrSpec.Enabled = False
-    DoEvents
-    CommandmanualMeasure.Enabled = False
-    DoEvents
-    
-Call ManualMeasureGamma
 
-    grayValueText.Enabled = True
-    CommandMeasure.Enabled = True
-    CommandStop.Enabled = False
-    FrameMsrSpec.Enabled = True
-    CommandmanualMeasure.Enabled = True
-   
-End Sub
-Private Sub ManualMeasureGamma()
-
-    Dim lVLocation As Long
-    Dim lHLocation As Long
-    Dim lVLocationMax As Long
-    Dim lHLocationMax As Long
-    Dim strMsg As String
-    Dim mm As Integer
-    
-    On Error Resume Next
-    
-    WaitTime = Val(TextIntervalSec.Text) / 10#
-   
-    InitializeData
-    GridInit
-    
-    xyControl1.Visible = True
-    picGraph.Visible = False
-    
-    If SelectDataName <> "COLOR" Then
-        objCa.DisplayMode = DSP_LXY
-        lDisplayMode = DSP_LXY
-        SelectDataName = "COLOR"
-    End If
-    
-   
-    
-   ' If FormVisibleFlg = True Then
-       ' FormWinPtn.SetWin 255, 255, 255
-  '  Else
-        ' Set Window Pattern
-      '  objVGControl.Pattern = 1
-        ' Set Video Levle
-     '   objVGControl.SetGVideoLevel 255, 255, 255
-    'End If
-    
-    If m < 8 Then
- MsgBox "数据过少", vbExclamation + vbOKOnly, "友情提醒"
- 'Exit Function
- Exit Sub
- End If
-
-    
-    
-    Dim lLevelStep As Long
-    Dim lStep As Integer
-    Dim tepG As Integer
-     mm = UBound(gstr)
-     lMeasureSpec = mm
-    lLevelStep = 256 / lMeasureSpec
-    
-'----------------------------------------------------------
- ' if gammaTestMode.Value = False Then
-  '   GoTo MeasureWhite
-    ' End If
-    '=====================
-    ' Measure White
-    '=====================
-    CommandStop.Enabled = True
-  
-MeasureWhite:
-    
-    'If FormVisibleFlg = True Then
-        SetWin 255, 255, 255
-        Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)
-        
-        If ComState <> "" Then
-        LabelCom.Caption = ComState
-        Else: LabelCom = ""
-        End If
-   '
-        'Call frmSet.comsendGrayNum(255, CLR_WHITE)
-   ' End If
-    MsgBox "White Measure!", vbOKOnly
-    xyControl1.Visible = True
-    picGraph.Visible = False
-    DoEvents
-    
-    'objCa.Measure
-    '---------------------
-    
-    
-    With typCurrentMeasurementData
-        For lStep = 0 To lMeasureSpec    '量测<255部分的阶数
-        
-                       
-            '    objVGControl.SetGVideoLevel lLevelStep * lStep, lLevelStep * lStep, lLevelStep * lStep
-            tepG = gstr(lStep)
-            SetWin tepG, tepG, tepG
-            DoEvents
-            Call frmSet.comsendGrayNum(tepG, CLR_WHITE, rgbChange)
-            DoEvents
-            laberGrayinfo.Caption = "当前阶数 " + CStr(tepG) + "/255" 'CSt
-            
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sWhiteGamma(lStep) = .Sy
-            
-            LabelDataVal(0).Caption = Format(.ssx, FORMAT_SXY)
-            LabelDataVal(1).Caption = Format(.ssy, FORMAT_SXY)
-            LabelDataVal(2).Caption = Format(.sLv, FORMAT_LV)
-            DoEvents
-            Call SetGammaData(ListNo, CLR_WHITE)
-            If ListNo > 8 Then
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-            
-            If bStop = True Then
-                Exit Sub
-            End If
-        Next lStep
-        
-          
-        xyControl1.Visible = False
-        picGraph.Visible = True
-        DoEvents
-        
-    End With
-    '----------------------------------------------------------
-   If lMeasureSpec <> 16 And lMeasureSpec <> 32 And lMeasureSpec <> 64 Then
-   Exit Sub
-   End If
-   
-        For lStep = 0 To lMeasureSpec
-            sWhiteGamma(lStep) = sWhiteGamma(lStep) / sWhiteGamma(lMeasureSpec)
-        Next lStep
-  
-    SetGraphData
-    
-End Sub
 Private Sub MeasureGamma()
 
     Dim lVLocation As Long
@@ -1975,7 +1576,7 @@ Private Sub MeasureGamma()
     WaitTime = Val(TextIntervalSec.Text) / 10#
    
     InitializeData
-    GridInit
+   ' GridInit
     
     xyControl1.Visible = True
     picGraph.Visible = False
@@ -1995,478 +1596,56 @@ Private Sub MeasureGamma()
        ' objVGControl.SetGVideoLevel 255, 255, 255
     End If
     
-    
-    Dim lLevelStep As Long
-    Dim lStep As Long
-    
-    lLevelStep = 256 / lMeasureSpec
-    
-'----------------------------------------------------------
-  If gammaTestMode.Value = False Then
-  '如果不是四色模式
-     GoTo MeasureWhite
-     '直接测试黑白
-     End If
-    '=====================
-    ' Measure Red
-    '=====================
-    'If FormVisibleFlg = True Then
-       ' SetWin 255, 0, 0
-        ' Call frmSet.comsendGrayNum(255, CLR_RED)
-    'Else
-      '  objVGControl.RedSW = True
-       ' objVGControl.GreenSW = False
-       ' objVGControl.BlueSW = False
-   ' End If
-    SetWin 255 * 1, 0, 0
-    
-   'If Not rgbChange Then
-            
-             '   DoEvents
-             Call frmSet.comsendGrayNum(255 * 1, CLR_RED, rgbChange)
-             
-             '判断数据是否能送出
-             If ComState <> "" Then
-             LabelCom.Caption = ComState
-             Else: LabelCom = ""
-             End If
-    'Else
-           '  SetWin 0, 0, 255
-            '    DoEvents
-          '  Call frmSet.comsendGrayNum(255, CLR_BLUE, rgbChange)
-     'End If
-    MsgBox "Red Measure!", vbOKOnly
-    'objCa.Measure
-    
-    ListNo = 1
-    With typCurrentMeasurementData
-        For lStep = 0 To lMeasureSpec - 1
-            'If FormVisibleFlg = True Then
-               ' SetWin lLevelStep * lStep, 0, 0
-              '  DoEvents
-           ' Else
-              '  objVGControl.SetGVideoLevel , 0, 0
-              ' Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_RED)
-           ' End If
-          ' If Not rgbChange Then
-                 SetWin lLevelStep * lStep, 0, 0
-                 DoEvents
-                 Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_RED, rgbChange)
-          ' Else
-            '    SetWin lLevelStep * lStep, 0, 0
-             '   DoEvents
-             '    Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_BLUE, rgbChange)
-          ' End If
-            
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sRedGamma(lStep) = .Sx
-            SetCurrentData
-            DoEvents
-            Call SetGammaData(ListNo, CLR_RED)
-            If ListNo > 8 Then           'Grid Scroll
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-            
-            If bStop = True Then
-                Exit Sub
-            End If
-        Next lStep
-                
-        If lMeasureSpec <> MSR_256 Then
-           ' If FormVisibleFlg = True Then
-             '   SetWin 255, 0, 0
-             '   DoEvents
-           ' Else
-              '  objVGControl.SetGVideoLevel 255, 0, 0
-             ' Call frmSet.comsendGrayNum(255, CLR_RED)
-           ' End If
-           
-            SetWin 255, 0, 0
-          ' If Not rgbChange Then
-               '  SetWin 255 * 1, 0, 0
-                DoEvents
-                Call frmSet.comsendGrayNum(255 * 1, CLR_RED, rgbChange)
-          ' Else
-                
-           '      DoEvents
-              '   Call frmSet.comsendGrayNum(255, CLR_BLUE, rgbChange)
-           ' End If
-           
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sRedGamma(lMeasureSpec) = .Sx
-             
-            Call SetGammaData(ListNo, CLR_RED)
-            SetCurrentData
-            If ListNo > 8 Then
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-        End If
-        xyControl1.Visible = False
-        picGraph.Visible = True
-        DoEvents
-    
-    End With
-    
-    If lMeasureSpec = MSR_256 Then
-        For lStep = 0 To lMeasureSpec - 1
-            sRedGamma(lStep) = sRedGamma(lStep) / sRedGamma(lMeasureSpec - 1)
-        Next lStep
-    Else
-        For lStep = 0 To lMeasureSpec
-            sRedGamma(lStep) = sRedGamma(lStep) / sRedGamma(lMeasureSpec)
-        Next lStep
-    End If
-    SetGraphData
-    
-    '=====================
-    ' Measure Green
-    '=====================
-  '  If FormVisibleFlg = True Then
-        SetWin 0, 255, 0
-   ' Else
-       ' objVGControl.RedSW = False
-      ''  objVGControl.GreenSW = True
-       ' objVGControl.BlueSW = False
-       Call frmSet.comsendGrayNum(255, CLR_GREEN, rgbChange)
-   ' End If
    
-   
-    MsgBox "Green Measure!", vbOKOnly
-    xyControl1.Visible = True
-    picGraph.Visible = False
-    DoEvents
-    
-    'objCa.Measure
-    
-    With typCurrentMeasurementData
-        For lStep = 0 To lMeasureSpec - 1
-          '  If FormVisibleFlg = True Then
-                SetWin 0, lLevelStep * lStep, 0
-                DoEvents
-                
-          '  Else
-              '  objVGControl.SetGVideoLevel 0, lLevelStep * lStep, 0
-              Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_GREEN, rgbChange)
-          '  End If
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sGreenGamma(lStep) = .Sy
-            
-            LabelDataVal(0).Caption = Format(.ssx, FORMAT_SXY)
-            LabelDataVal(1).Caption = Format(.ssy, FORMAT_SXY)
-            LabelDataVal(2).Caption = Format(.sLv, FORMAT_LV)
-            DoEvents
-            Call SetGammaData(ListNo, CLR_GREEN)
-            If ListNo > 8 Then           'Grid Scroll
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-            
-            If bStop = True Then
-                Exit Sub
-            End If
-        Next lStep
-        If lMeasureSpec <> MSR_256 Then
-           ' If FormVisibleFlg = True Then
-                SetWin 0, 255, 0
-                DoEvents
-                
-           ' Else
-               ' objVGControl.SetGVideoLevel 0, 255, 0
-               Call frmSet.comsendGrayNum(255, CLR_GREEN, rgbChange)
-          '  End If
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sGreenGamma(lMeasureSpec) = .Sy
-            
-            Call SetGammaData(ListNo, CLR_GREEN)
-            SetCurrentData  '020311
-            If ListNo > 8 Then           'Grid Scroll
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-        End If
-        
-        xyControl1.Visible = False
-        picGraph.Visible = True
-        DoEvents
-        
-    End With
-    If lMeasureSpec = MSR_256 Then
-        For lStep = 0 To lMeasureSpec - 1
-            sGreenGamma(lStep) = sGreenGamma(lStep) / sGreenGamma(lMeasureSpec - 1)
-        Next lStep
-    Else
-        For lStep = 0 To lMeasureSpec
-            sGreenGamma(lStep) = sGreenGamma(lStep) / sGreenGamma(lMeasureSpec)
-        Next lStep
-    End If
-    
-    SetGraphData
-    
     '=====================
-    ' Measure Blue
+    ' Measure Start
     '=====================
-   ' If FormVisibleFlg = True Then
-    '    SetWin 0, 0, 255
-   ' Else
-      '  objVGControl.RedSW = False
-      '  objVGControl.GreenSW = False
-      '  objVGControl.BlueSW = True
-   '   Call frmSet.comsendGrayNum(255, CLR_BLUE)
-   ' End If
-    SetWin 0, 0, 255
-   ' If Not rgbChange Then
-               
-                DoEvents
-                Call frmSet.comsendGrayNum(255 * 1, CLR_BLUE, rgbChange)
-   '  Else
-                ' SetWin 255, 0, 0
-           '      DoEvents
-               '  Call frmSet.comsendGrayNum(255, CLR_RED, rgbChange)
-     'End If
-   
-    MsgBox "Blue Measure!", vbOKOnly
-    xyControl1.Visible = True
-    picGraph.Visible = False
-    DoEvents
-    
-    'objCa.Measure
-    
-    With typCurrentMeasurementData
-        For lStep = 0 To lMeasureSpec - 1
-          '  If FormVisibleFlg = True Then
-             '   SetWin 0, 0, lLevelStep * lStep
-            '    DoEvents
-                
-           ' Else
-               ' objVGControl.SetGVideoLevel 0, 0,
-             '  Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_BLUE)
-               
-           ' End If
-            SetWin 0, 0, lLevelStep * lStep
-          ' If Not rgbChange Then
-               
-                DoEvents
-                Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_BLUE, rgbChange)
-           '  Else
-                ' SetWin lLevelStep * lStep, 0, 0
-             '    DoEvents
-               '  Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_RED, rgbChange)
-           '  End If
-           
-           
-           
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sBlueGamma(lStep) = .Sz
-            
-            LabelDataVal(0).Caption = Format(.ssx, FORMAT_SXY)
-            LabelDataVal(1).Caption = Format(.ssy, FORMAT_SXY)
-            LabelDataVal(2).Caption = Format(.sLv, FORMAT_LV)
-            DoEvents
-            Call SetGammaData(ListNo, CLR_BLUE)
-            If ListNo > 8 Then           'Grid Scroll
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-            
-            If bStop = True Then
-                Exit Sub
-            End If
-        Next lStep
-        If lMeasureSpec <> MSR_256 Then
-           ' If FormVisibleFlg = True Then
-              '  SetWin 0, 0, 255
-             '   DoEvents
-           ' Else
-              '  objVGControl.SetGVideoLevel 0, 0, 255
-            '  Call frmSet.comsendGrayNum(255, CLR_BLUE)
-           ' End If
-           SetWin 0, 0, 255
-          ' If Not rgbChange Then
-              '
-                DoEvents
-                Call frmSet.comsendGrayNum(255 * 1, CLR_BLUE, rgbChange)
-           ' Else
-                 
-                ' DoEvents
-                ' Call frmSet.comsendGrayNum(255, CLR_RED, rgbChange)
-            'End If
-           
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sBlueGamma(lMeasureSpec) = .Sz
-            
-            Call SetGammaData(ListNo, CLR_BLUE)
-            SetCurrentData  '020311
-            If ListNo > 8 Then           'Grid Scroll
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-        End If
-        
-        xyControl1.Visible = False
-        picGraph.Visible = True
-        DoEvents
-        
-    End With
-    If lMeasureSpec = MSR_256 Then
-        For lStep = 0 To lMeasureSpec - 1
-            sBlueGamma(lStep) = sBlueGamma(lStep) / sBlueGamma(lMeasureSpec - 1)
-        Next lStep
-    Else
-        For lStep = 0 To lMeasureSpec
-            sBlueGamma(lStep) = sBlueGamma(lStep) / sBlueGamma(lMeasureSpec)
-        Next lStep
-    End If
-    SetGraphData
-    
-    '=====================
-    ' Measure White
-    '=====================
-MeasureWhite:
-    
-    'If FormVisibleFlg = True Then
-        SetWin 255, 255, 255
-        Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)
-        
+'MeasureWhite:
+  
         If ComState <> "" Then
         LabelCom.Caption = ComState
         Else: LabelCom = ""
         End If
         
-   ' Else
-     '   Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)
-   ' End If
-    MsgBox "White Measure!", vbOKOnly
-    xyControl1.Visible = True
-    picGraph.Visible = False
-    DoEvents
-    
-    'objCa.Measure
-    
-    With typCurrentMeasurementData
-        For lStep = 0 To lMeasureSpec - 1   '量测<255部分的阶数
+        xyControl1.Visible = True
+        picGraph.Visible = False
+        DoEvents
+        '-----------显示画面开始---------------------------
+        Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)    '参数1：阶数（0～2255）；参数2：全色画面（CLR_RED：全红，CLR_GREEN:全绿，CLR_BLUE:全蓝，CLR_WHITE:全灰）；参数3：rgb是否交换
+        SetWin 255, 255, 255
+        xpartmeasure
+        Call frmSet.comsendGrayNum(255, CLR_RED, rgbChange)
+        SetWin 255, 0, 0
+        xpartmeasure
+        Call frmSet.comsendGrayNum(255, CLR_GREEN, rgbChange)
+        SetWin 0, 255, 0
+        xpartmeasure
+        Call frmSet.comsendGrayNum(255, CLR_BLUE, rgbChange)
+        SetWin 0, 0, 255
+        xpartmeasure
+        Call frmSet.comsendGrayNum(0, CLR_WHITE, rgbChange)
+        SetWin 0, 0, 0
+        xpartmeasure
         
-            SetWin lLevelStep * lStep, lLevelStep * lStep, lLevelStep * lStep
-            
-            '    objVGControl.SetGVideoLevel lLevelStep * lStep, lLevelStep * lStep, lLevelStep * lStep
-            Call frmSet.comsendGrayNum(lLevelStep * lStep, CLR_WHITE, rgbChange)
+        MsgBox "量测结束，更换产品", vbOKOnly
+        SetWin 255, 255, 255
+      '-------------测试结束---------------------------------
+      CommandMeasure.Enabled = False
+      Text_barcode.Text = ""  '清空Barcode栏
+      Text_barcode.SetFocus  ' 设定焦点于Barcode栏，等待输入
+   
+   
+End Sub
+Private Sub xpartmeasure()
+
+    With typCurrentMeasurementData
+       
             If WaitTime = 0 Then
             Else
                 SetWait
-            End If
-            objCa.Measure
+            End If              '设定延时
+            
+            objCa.Measure       '量测数据
             .dateColorData = Date
             .timeColorData = Time
             .lColorStatus = objProbe.RD
@@ -2481,74 +1660,41 @@ MeasureWhite:
             .svd = objProbe.vd
             .sduv = objProbe.duv
             .LT = objProbe.T
-            sWhiteGamma(lStep) = .Sy
+            'sWhiteGamma(lStep) = .Sy
             
-            LabelDataVal(0).Caption = Format(.ssx, FORMAT_SXY)
+            LabelDataVal(0).Caption = Format(.ssx, FORMAT_SXY)   '当前 x，y Lv显示
             LabelDataVal(1).Caption = Format(.ssy, FORMAT_SXY)
             LabelDataVal(2).Caption = Format(.sLv, FORMAT_LV)
             DoEvents
-            Call SetGammaData(ListNo, CLR_WHITE)
-            If ListNo > 8 Then
+            
+            Call SetGammaData(ListNo, CLR_WHITE)      '  xyLv数据保存于csv窗口
+            If ListNo > 8 Then                                   '设定数据窗口内容超过目标行数后自动向上滚动
                 grdDataList.TopRow = grdDataList.TopRow + 1
             End If
+            'Coln = Coln + 1
+            'If (Coln = 4) Then    'Coln 代表画面数量，一个循环里面所有画面数量的统计（放在一行里面）
             ListNo = ListNo + 1
+            '‘Coln = 4
+            'End If
             
-            If bStop = True Then
+            If bStop = True Then        '设定停止标志位，以响应“Stop”按钮
                 Exit Sub
             End If
-        Next lStep
-        If lMeasureSpec <> MSR_256 Then   '针对不是256阶情况加测白画面（256阶时候不需要测）
-             DoEvents
-             
-             '   objVGControl.SetGVideoLevel 255, 255, 255
-              SetWin 255, 255, 255
-              Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)
-              
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If
-            
-            objCa.Measure
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            sWhiteGamma(lMeasureSpec) = .Sy
-            
-            Call SetGammaData(ListNo, CLR_WHITE)
-            SetCurrentData  '020311
-            If ListNo > 8 Then
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            ListNo = ListNo + 1
-        End If
-        
-        xyControl1.Visible = False
-        picGraph.Visible = True
+       
+        xyControl1.Visible = True
+        'picGraph.Visible = True
         DoEvents
         
     End With
-    If lMeasureSpec = MSR_256 Then
-        For lStep = 0 To lMeasureSpec - 1
-            sWhiteGamma(lStep) = sWhiteGamma(lStep) / sWhiteGamma(lMeasureSpec - 1)
-        Next lStep
-    Else
-        For lStep = 0 To lMeasureSpec
-            sWhiteGamma(lStep) = sWhiteGamma(lStep) / sWhiteGamma(lMeasureSpec)
-        Next lStep
-    End If
-    SetGraphData
+    'SetGraphData
+End Sub
+Private Sub Text_barcode_Change()
+If (Len(Text_barcode.Text) = Len(Text_standard.Text)) And Len(Text_standard.Text) > 5 And (connectCA310ok = True) Then
+CheckgrayValueText.Enabled = False
+CommandMeasure.Enabled = True
+CommandMeasure.SetFocus
+Exit Sub
+End If
 End Sub
 Public Sub InitializeData()
     Dim i As Integer
@@ -2559,19 +1705,7 @@ Public Sub InitializeData()
         sBlueGamma(i) = 0#
         sWhiteGamma(i) = 0#
     Next i
-    
-    If Option16.Value = True Then
-        lMeasureSpec = MSR_16
-    ElseIf Option32.Value = True Then
-        lMeasureSpec = MSR_32
-    ElseIf Option64.Value = True Then
-        lMeasureSpec = MSR_64
-    ElseIf Option128.Value = True Then
-        lMeasureSpec = MSR_128
-    Else
-        lMeasureSpec = MSR_256
-    End If
-
+  
 End Sub
 
 Private Sub UpDownGraph_Change()
