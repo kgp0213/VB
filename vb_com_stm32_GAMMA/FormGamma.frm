@@ -7,10 +7,10 @@ Object = "{F0971ADD-CEF2-46B3-8D7F-C075DE0316B1}#18.0#0"; "MinoltaColorSpaceCont
 Begin VB.Form FormGamma 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Gamma2017.8.9"
-   ClientHeight    =   6825
+   ClientHeight    =   6930
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   13920
+   ClientWidth     =   13965
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -25,9 +25,103 @@ Begin VB.Form FormGamma
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6825
-   ScaleWidth      =   13920
+   ScaleHeight     =   6930
+   ScaleWidth      =   13965
    StartUpPosition =   2  '屏幕中心
+   Begin VB.Frame Frame3 
+      Caption         =   "标准值"
+      Height          =   1335
+      Left            =   10800
+      TabIndex        =   42
+      Top             =   2280
+      Width           =   2895
+      Begin VB.TextBox Text3 
+         Height          =   315
+         Index           =   1
+         Left            =   2040
+         TabIndex        =   52
+         Text            =   "100"
+         Top             =   1080
+         Width           =   735
+      End
+      Begin VB.TextBox Text2 
+         Height          =   315
+         Index           =   1
+         Left            =   2040
+         TabIndex        =   51
+         Text            =   "0.3"
+         Top             =   600
+         Width           =   735
+      End
+      Begin VB.TextBox Text1 
+         Height          =   315
+         Index           =   1
+         Left            =   2040
+         TabIndex        =   50
+         Text            =   "0.3"
+         Top             =   120
+         Width           =   735
+      End
+      Begin VB.TextBox Text2 
+         Height          =   315
+         Index           =   0
+         Left            =   960
+         TabIndex        =   49
+         Text            =   "0.3"
+         Top             =   600
+         Width           =   735
+      End
+      Begin VB.TextBox Text3 
+         Height          =   315
+         Index           =   0
+         Left            =   960
+         TabIndex        =   44
+         Text            =   "100"
+         Top             =   1080
+         Width           =   735
+      End
+      Begin VB.TextBox Text1 
+         Height          =   315
+         Index           =   0
+         Left            =   960
+         TabIndex        =   43
+         Text            =   "0.3"
+         Top             =   120
+         Width           =   735
+      End
+      Begin VB.Label Labeleditxyz 
+         Caption         =   "Edit"
+         Height          =   255
+         Left            =   120
+         TabIndex        =   48
+         Top             =   600
+         Width           =   255
+      End
+      Begin VB.Label Label7 
+         Caption         =   "Lv:"
+         Height          =   255
+         Left            =   720
+         TabIndex        =   47
+         Top             =   1080
+         Width           =   375
+      End
+      Begin VB.Label Label6 
+         Caption         =   "y:"
+         Height          =   255
+         Left            =   720
+         TabIndex        =   46
+         Top             =   600
+         Width           =   375
+      End
+      Begin VB.Label Label4 
+         Caption         =   "x:"
+         Height          =   255
+         Left            =   720
+         TabIndex        =   45
+         Top             =   240
+         Width           =   255
+      End
+   End
    Begin VB.CommandButton Command_Saveas 
       Caption         =   "Save as..."
       BeginProperty Font 
@@ -43,7 +137,7 @@ Begin VB.Form FormGamma
       Left            =   9240
       TabIndex        =   41
       ToolTipText     =   "自定义保存目录"
-      Top             =   5760
+      Top             =   5640
       Width           =   1215
    End
    Begin VB.TextBox Text_barcode 
@@ -57,19 +151,19 @@ Begin VB.Form FormGamma
          Strikethrough   =   0   'False
       EndProperty
       Height          =   675
-      Left            =   9840
+      Left            =   7200
       TabIndex        =   38
       Text            =   "Barcode"
       Top             =   3000
-      Width           =   3735
+      Width           =   3255
    End
    Begin VB.PictureBox Picture1 
       Height          =   1095
-      Left            =   960
+      Left            =   1080
       ScaleHeight     =   1035
       ScaleWidth      =   7275
       TabIndex        =   34
-      Top             =   4800
+      Top             =   5040
       Width           =   7335
       Begin VB.Label Label3 
          Caption         =   "请先连接CA310，大约需要30S"
@@ -83,7 +177,7 @@ Begin VB.Form FormGamma
             Strikethrough   =   0   'False
          EndProperty
          Height          =   615
-         Left            =   360
+         Left            =   480
          TabIndex        =   35
          Top             =   240
          Width           =   6615
@@ -192,7 +286,7 @@ Begin VB.Form FormGamma
    End
    Begin VB.Frame Frame2 
       Caption         =   "设置"
-      Height          =   2295
+      Height          =   2055
       Left            =   6960
       TabIndex        =   23
       Top             =   120
@@ -261,7 +355,7 @@ Begin VB.Form FormGamma
       Height          =   555
       Left            =   6960
       TabIndex        =   21
-      Top             =   2520
+      Top             =   2160
       Width           =   2595
       _ExtentX        =   3625
       _ExtentY        =   873
@@ -296,10 +390,10 @@ Begin VB.Form FormGamma
          Strikethrough   =   0   'False
       EndProperty
       Height          =   555
-      Left            =   12600
+      Left            =   11640
       TabIndex        =   16
       Top             =   3840
-      Width           =   975
+      Width           =   1695
    End
    Begin VB.Frame FrameRefData 
       Caption         =   "Ref. xyLv"
@@ -508,10 +602,10 @@ Begin VB.Form FormGamma
          Strikethrough   =   0   'False
       EndProperty
       Height          =   555
-      Left            =   9960
+      Left            =   9000
       TabIndex        =   1
       Top             =   3840
-      Width           =   2415
+      Width           =   2175
    End
    Begin VB.CommandButton CommandSave 
       Caption         =   "Save..."
@@ -528,7 +622,7 @@ Begin VB.Form FormGamma
       Left            =   9240
       TabIndex        =   0
       ToolTipText     =   "默认数据以时间命名保存于当前目录"
-      Top             =   5160
+      Top             =   5040
       Width           =   1215
    End
    Begin MSComDlg.CommonDialog cmdDiag 
@@ -549,11 +643,11 @@ Begin VB.Form FormGamma
    End
    Begin MSFlexGridLib.MSFlexGrid grdDataList 
       Height          =   2715
-      Left            =   0
+      Left            =   60
       TabIndex        =   4
-      Top             =   3960
-      Width           =   9015
-      _ExtentX        =   15901
+      Top             =   4080
+      Width           =   8895
+      _ExtentX        =   15690
       _ExtentY        =   4789
       _Version        =   393216
       Rows            =   10401
@@ -595,7 +689,7 @@ Begin VB.Form FormGamma
    Begin VB.Label Label2 
       Caption         =   "当前Barcode："
       Height          =   255
-      Left            =   9840
+      Left            =   6960
       TabIndex        =   40
       Top             =   2760
       Width           =   1575
@@ -703,8 +797,15 @@ Dim lMeasureSpec As Long
 Dim lSelectedRow0 As Long
 Dim lSelectedRow1 As Long
 Dim connectCA310ok As Boolean
-
+Dim n As Integer
 Dim WaitTime As Double
+Const xmin = 0.27
+Const xmax = 0.33
+Const ymin = 0.29
+Const ymax = 0.35
+Const lvmin = 280
+Const lvmax = 500
+Dim editflag As Integer
 
 Sub SetGraphData()
     Dim i As Integer, j As Integer
@@ -891,15 +992,42 @@ SaveasFlag = True
 SaveData
 End Sub
 
+
+Private Sub Labeleditxyz_dblClick()
+'Labeleditxyz.Caption = "Edit"
+editflag = editflag + 1
+If (editflag = 2) Then
+Text1(0).Locked = False
+Text1(1).Locked = False
+Text2(0).Locked = False
+Text2(1).Locked = False
+Text3(0).Locked = False
+Text3(1).Locked = False
+Labeleditxyz.Caption = "Save"
+Else
+    If (editflag = 3) Then
+    Text1(0).Locked = True
+    Text1(1).Locked = True
+    Text2(0).Locked = True
+    Text2(1).Locked = True
+    Text3(0).Locked = True
+    Text3(1).Locked = True
+    Labeleditxyz.Visible = False
+    Frame3.Caption = "标准已改:"
+    End If
+End If
+End Sub
+
 Private Sub Text_standard_KeyPress(KeyAscii As Integer)
 If (KeyAscii = 13) And (Len(Text_standard.Text) > 6) Then   'MsgBox "标准Barcode已录入"
 
+n = Len(Text_standard.Text) '计算标准barcode长度，供后续直接调用
    
  CheckgrayValueText.Visible = True
  laberGrayinfo.Caption = "BC式样锁定："
  MsgBox "标准Barcode已录入"
-CheckgrayValueText.Visible = False
- Text_standard.Locked = True
+ CheckgrayValueText.Visible = False    '隐藏锁定按键
+ Text_standard.Locked = True           '锁定当前输入框
  Text_barcode.Enabled = True
  Text_barcode.SetFocus
 End If
@@ -1039,6 +1167,19 @@ Private Sub Form_Activate()
 
 End Sub
 Private Sub Form_Load()
+Text1(0).Text = Format(xmin, "0.0000")
+Text1(1).Text = Format(xmax, "0.0000")
+Text2(0).Text = Format(ymin, "0.0000")
+Text2(1).Text = Format(ymax, "0.0000")
+Text3(0).Text = lvmin
+Text3(1).Text = lvmax
+Text1(0).Locked = True
+Text1(1).Locked = True
+Text2(0).Locked = True
+Text2(1).Locked = True
+Text3(0).Locked = True
+Text3(1).Locked = True
+editflag = 0
 dubuggFlag = 0
 SaveasFlag = False
 m = 0
@@ -1371,14 +1512,14 @@ Private Sub UpDownCurrentData_UpClick()
 
 End Sub
 
-Sub SetGammaData(ByVal LisNo As Integer, lClr As Long)
+Sub SetGammaData(ByVal LisNo As Integer, RGB As String)
     
     grdDataList.Row = LisNo
     
     grdDataList.Col = 1
     grdDataList.Text = Text_barcode.Text
-   ' grdDataList.Col = 2
-   ' grdDataList.Text = Format(typCurrentMeasurementData.Sy, "0.00")
+    grdDataList.Col = 2
+    grdDataList.Text = RGB
    ' grdDataList.Col = 3
    ' grdDataList.Text = Format(typCurrentMeasurementData.Sz, "0.00")
     grdDataList.Col = 4
@@ -1560,8 +1701,6 @@ ER:
     Return
 End Sub
 
-
-
 Private Sub MeasureGamma()
 
     Dim lVLocation As Long
@@ -1613,19 +1752,19 @@ Private Sub MeasureGamma()
         '-----------显示画面开始---------------------------
         Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)    '参数1：阶数（0～2255）；参数2：全色画面（CLR_RED：全红，CLR_GREEN:全绿，CLR_BLUE:全蓝，CLR_WHITE:全灰）；参数3：rgb是否交换
         SetWin 255, 255, 255
-        xpartmeasure
+        xpartmeasure "W"
         Call frmSet.comsendGrayNum(255, CLR_RED, rgbChange)
         SetWin 255, 0, 0
-        xpartmeasure
+        xpartmeasure "R"
         Call frmSet.comsendGrayNum(255, CLR_GREEN, rgbChange)
         SetWin 0, 255, 0
-        xpartmeasure
+        xpartmeasure ("G")
         Call frmSet.comsendGrayNum(255, CLR_BLUE, rgbChange)
         SetWin 0, 0, 255
-        xpartmeasure
+        xpartmeasure "B"
         Call frmSet.comsendGrayNum(0, CLR_WHITE, rgbChange)
         SetWin 0, 0, 0
-        xpartmeasure
+        xpartmeasure "D"
         
         MsgBox "量测结束，更换产品", vbOKOnly
         SetWin 255, 255, 255
@@ -1636,7 +1775,7 @@ Private Sub MeasureGamma()
    
    
 End Sub
-Private Sub xpartmeasure()
+Private Sub xpartmeasure(ByVal rgbname As String)
 
     With typCurrentMeasurementData
        
@@ -1667,7 +1806,12 @@ Private Sub xpartmeasure()
             LabelDataVal(2).Caption = Format(.sLv, FORMAT_LV)
             DoEvents
             
-            Call SetGammaData(ListNo, CLR_WHITE)      '  xyLv数据保存于csv窗口
+            '----------添加x y Lv 数值范围判断-------
+            
+            
+            
+            '----------------------------------------
+            Call SetGammaData(ListNo, rgbname)      '  xyLv数据保存于csv窗口
             If ListNo > 8 Then                                   '设定数据窗口内容超过目标行数后自动向上滚动
                 grdDataList.TopRow = grdDataList.TopRow + 1
             End If
@@ -1688,14 +1832,34 @@ Private Sub xpartmeasure()
     End With
     'SetGraphData
 End Sub
-Private Sub Text_barcode_Change()
-If (Len(Text_barcode.Text) = Len(Text_standard.Text)) And Len(Text_standard.Text) > 5 And (connectCA310ok = True) Then
-CheckgrayValueText.Enabled = False
+'Private Sub Text_barcode_Change()
+'If (Len(Text_barcode.Text) = Len(Text_standard.Text)) And Len(Text_standard.Text) > 5 And (connectCA310ok = True) Then
+'CheckgrayValueText.Enabled = False
+'CommandMeasure.Enabled = True
+'CommandMeasure.SetFocus
+'Exit Sub
+'End If
+'End Sub
+Private Sub Text_barcode_KeyPress(KeyAscii As Integer)
+If (KeyAscii = 13) Then
+        If (Len(Text_barcode.Text) >= Len(Text_standard.Text)) Then   '
+           If (Len(Text_barcode.Text) = Len(Text_standard.Text)) Then
+           Else
+              Text_barcode.Text = Mid(Text_barcode.Text, Len(Text_barcode.Text) - n + 1, n)
+              'n为标准的barcode长度
+           End If
+        Else
+            MsgBox "Barcode异常，请确认！"
+            Text_barcode.SetFocus
+            Exit Sub
+        End If
+'CheckgrayValueText.Enabled = False  '
 CommandMeasure.Enabled = True
-CommandMeasure.SetFocus
-Exit Sub
+'CommandMeasure.SetFocus
+Call CommandMeasure_Click
 End If
 End Sub
+
 Public Sub InitializeData()
     Dim i As Integer
     
