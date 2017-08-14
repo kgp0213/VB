@@ -31,93 +31,131 @@ Begin VB.Form FormGamma
    Begin VB.Frame Frame3 
       Caption         =   "标准值"
       Height          =   1335
-      Left            =   10800
+      Left            =   10680
       TabIndex        =   42
       Top             =   2280
-      Width           =   2895
-      Begin VB.TextBox Text3 
-         Height          =   315
-         Index           =   1
-         Left            =   2040
-         TabIndex        =   52
-         Text            =   "100"
+      Width           =   3135
+      Begin VB.OptionButton OptionRGB 
+         Caption         =   "W"
+         Height          =   255
+         Index           =   3
+         Left            =   0
+         TabIndex        =   56
          Top             =   1080
+         Value           =   -1  'True
+         Width           =   495
+      End
+      Begin VB.OptionButton OptionRGB 
+         Caption         =   "B"
+         Height          =   255
+         Index           =   2
+         Left            =   0
+         TabIndex        =   55
+         Top             =   840
+         Width           =   375
+      End
+      Begin VB.OptionButton OptionRGB 
+         Caption         =   "G"
+         Height          =   255
+         Index           =   1
+         Left            =   0
+         TabIndex        =   54
+         Top             =   600
+         Width           =   375
+      End
+      Begin VB.TextBox Textcxyz 
+         Height          =   315
+         Index           =   5
+         Left            =   2280
+         TabIndex        =   53
+         Text            =   "0.3"
+         Top             =   960
          Width           =   735
       End
-      Begin VB.TextBox Text2 
+      Begin VB.TextBox Textcxyz 
          Height          =   315
-         Index           =   1
-         Left            =   2040
+         Index           =   4
+         Left            =   1080
+         TabIndex        =   52
+         Text            =   "0.3"
+         Top             =   960
+         Width           =   735
+      End
+      Begin VB.TextBox Textcxyz 
+         Height          =   315
+         Index           =   3
+         Left            =   2280
          TabIndex        =   51
          Text            =   "0.3"
          Top             =   600
          Width           =   735
       End
-      Begin VB.TextBox Text1 
+      Begin VB.TextBox Textcxyz 
          Height          =   315
-         Index           =   1
-         Left            =   2040
+         Index           =   2
+         Left            =   1080
          TabIndex        =   50
-         Text            =   "0.3"
-         Top             =   120
-         Width           =   735
-      End
-      Begin VB.TextBox Text2 
-         Height          =   315
-         Index           =   0
-         Left            =   960
-         TabIndex        =   49
          Text            =   "0.3"
          Top             =   600
          Width           =   735
       End
-      Begin VB.TextBox Text3 
-         Height          =   315
+      Begin VB.OptionButton OptionRGB 
+         Caption         =   "R"
+         Height          =   255
          Index           =   0
-         Left            =   960
-         TabIndex        =   44
-         Text            =   "100"
-         Top             =   1080
+         Left            =   0
+         TabIndex        =   49
+         Top             =   360
+         Width           =   375
+      End
+      Begin VB.TextBox Textcxyz 
+         Height          =   315
+         Index           =   1
+         Left            =   2280
+         TabIndex        =   48
+         Text            =   "0.3"
+         Top             =   240
          Width           =   735
       End
-      Begin VB.TextBox Text1 
+      Begin VB.TextBox Textcxyz 
          Height          =   315
          Index           =   0
-         Left            =   960
+         Left            =   1080
          TabIndex        =   43
          Text            =   "0.3"
-         Top             =   120
+         Top             =   240
          Width           =   735
       End
       Begin VB.Label Labeleditxyz 
-         Caption         =   "Edit"
-         Height          =   255
-         Left            =   120
-         TabIndex        =   48
-         Top             =   600
-         Width           =   255
+         AutoSize        =   -1  'True
+         Caption         =   "E"
+         Height          =   930
+         Left            =   600
+         TabIndex        =   47
+         Top             =   360
+         Width           =   165
       End
       Begin VB.Label Label7 
          Caption         =   "Lv:"
          Height          =   255
-         Left            =   720
-         TabIndex        =   47
+         Left            =   840
+         TabIndex        =   46
          Top             =   1080
          Width           =   375
       End
       Begin VB.Label Label6 
          Caption         =   "y:"
          Height          =   255
-         Left            =   720
-         TabIndex        =   46
+         Left            =   840
+         TabIndex        =   45
          Top             =   600
-         Width           =   375
+         Width           =   255
       End
       Begin VB.Label Label4 
          Caption         =   "x:"
          Height          =   255
-         Left            =   720
-         TabIndex        =   45
+         Left            =   840
+         TabIndex        =   44
          Top             =   240
          Width           =   255
       End
@@ -374,7 +412,7 @@ Begin VB.Form FormGamma
       IMEMode         =   3  'DISABLE
       Left            =   13200
       TabIndex        =   18
-      Text            =   "5"
+      Text            =   "8"
       Top             =   5160
       Width           =   375
    End
@@ -772,7 +810,7 @@ Attribute objCaControl.VB_VarHelpID = -1
 'Public WithEvents objVGControl As VGControl
 
 'Dim typMeasurementData(1040) As TypeMeasurementData
-Dim lCount As Long
+Dim TestCount As Long '统计测试数量
 
 Dim lMeasureMode As Long
 Dim lDisplayMode As Long
@@ -799,33 +837,460 @@ Dim lSelectedRow1 As Long
 Dim connectCA310ok As Boolean
 Dim n As Integer
 Dim WaitTime As Double
-Const xmin = 0.27
-Const xmax = 0.33
-Const ymin = 0.29
-Const ymax = 0.35
-Const lvmin = 280
-Const lvmax = 500
-Dim editflag As Integer
-
-Sub SetGraphData()
-    Dim i As Integer, j As Integer
-    
-    'If lMeasureSpec = MSR_256 Then
-   '     j = lMeasureSpec - 1
-   ' Else
-        j = lMeasureSpec
-    'End If
-    For i = 0 To j
-        Mydata(i + 1, 1) = sRedGamma(i)
-        Mydata(i + 1, 2) = sGreenGamma(i)
-        Mydata(i + 1, 3) = sBlueGamma(i)
-        Mydata(i + 1, 4) = sWhiteGamma(i)
-    Next i
-    
-    SetGraph
-    
+Dim xmin As Single   ' RGB规格值
+Dim xmax As Single
+Dim ymin As Single
+Dim ymax As Single
+Dim lvmin As Single
+Dim lvmax As Single
+Dim Rxmin As Single
+Dim Rxmax As Single
+Dim Rymin As Single
+Dim Rymax As Single
+Dim Rlvmin As Single
+Dim Rlvmax As Single
+Dim Gxmin As Single
+Dim Gxmax As Single
+Dim Gymin As Single
+Dim Gymax As Single
+Dim Glvmin As Single
+Dim Glvmax As Single
+Dim Bxmin As Single
+Dim Bxmax As Single
+Dim Bymin As Single
+Dim Bymax As Single
+Dim Blvmin As Single
+Dim Blvmax As Single
+'----------------------------------------
+Private Sub CrgbSpecLoad()
+xmin = 0.28
+xmax = 0.33
+ymin = 0.29
+ymax = 0.34
+lvmin = 70
+lvmax = 500
+Rxmin = 0.55
+Rxmax = 0.68
+Rymin = 0.31
+Rymax = 0.36
+Rlvmin = 14
+Rlvmax = 500
+Gxmin = 0.31
+Gxmax = 0.34
+Gymin = 0.55
+Gymax = 0.62
+Glvmin = 40
+Glvmax = 500
+Bxmin = 0.14
+Bxmax = 0.17
+Bymin = 0.05
+Bymax = 0.14
+Blvmin = 8
+Blvmax = 500
+Textcxyz(0).Text = Format(xmin, "0.0000")
+Textcxyz(1).Text = Format(xmax, "0.0000")
+Textcxyz(2).Text = Format(ymin, "0.0000")
+Textcxyz(3).Text = Format(ymax, "0.0000")
+Textcxyz(4).Text = lvmin
+Textcxyz(5).Text = lvmax
+Textcxyz(0).Locked = True
+Textcxyz(1).Locked = True
+Textcxyz(2).Locked = True
+Textcxyz(3).Locked = True
+Textcxyz(4).Locked = True
+Textcxyz(5).Locked = True
+OptionRGB(3).Value = True
+Labeleditxyz.Tag = ""
+Labeleditxyz.Visible = True
+Frame3.Caption = "标准值:"
+ ' Labeleditxyz.Tag = ""
 End Sub
-Sub GridInit()
+Private Sub Form_Load()
+CrgbSpecLoad '初始化rgb色坐标规格值
+'dubuggFlag = 0
+'SaveasFlag = False  '判断是否 saveas ，saveas为ture，则保存数据时候会提示选择路径
+TestCount = 0 '保存测试产品数量
+m = 0
+'Coln = 0
+grayNumflag = 0
+cmdBusyFlag = True
+'Call grayValueText_Change
+'Unload frmSet
+'MeasureGamma
+CheckgrayValueText.Enabled = False
+FrameRefData.Enabled = False
+'Label4.Caption = ""
+Set mycomm = frmSet.MSComm1
+If (mycomm.PortOpen = True) Then
+    
+      imgledon.Visible = True
+      imgledoff.Visible = False
+      
+      
+     Else
+          'imgledon.Visible = False
+          'imgledoff.Visible = True
+        On Error Resume Next
+         frmSet.MSComm1.PortOpen = True
+         If (frmSet.MSComm1.PortOpen = False) Then
+         imgledon.Visible = False
+         imgledoff.Visible = True
+         
+         MsgBox "请先确认本机串口可以正常工作", vbExclamation + vbOKOnly, "友情提醒"
+       End If
+End If
+
+'Label2.Caption = "上述数据以0开始、以255结尾，数据间以逗号分隔"
+'Me.AcceptButton = Me.CommandCconnect
+'Me.CommandConnect.SetFocus
+CommandConnect.BackColor = vbRed
+Command0Cal.Enabled = False
+CommandMeasure.Enabled = False
+CheckgrayValueText.Value = Checked
+'CommandmanualMeasure.Enabled = False
+CommandCloseConnect.Enabled = False
+'Picture1.Visible = False
+' ColorRgb2Bgr.Enabled = False
+' rgbChange = False
+Label_readme = "首先(连接CA310)，然后：" & vbCrLf & "1, 解锁并输入当前批次任一Barcode作为标准后再次锁定" & vbCrLf & _
+                "2, 确认LCD显示后，放置好CA310探头" & vbCrLf & _
+                "3, 扫描产品Barcode之后，会自动进行测量"
+Label5.Caption = App.Major & "." & App.Minor & "." & App.Revision
+GridInit
+CommandConnect.Enabled = True
+'CommandConnect.SetFocus
+Text_barcode.Text = ""
+CommandSave.Enabled = False
+Text_barcode.Enabled = False
+End Sub
+Private Sub CommandMeasure_Click() '按钮：测量数据
+    Dim bResult As Boolean
+    'CMD1Text.FontSize = 12
+    
+    'gammaTestMode.Enabled = False
+    ' 030407
+    If objCa.DisplayMode <> COLOR_MODE Then
+        objCa.DisplayMode = DSP_LXY
+    End If
+    
+    cmdBusyFlag = True
+    
+   ' cmdWin.Enabled = False
+    bStop = False
+    CommandMeasure.Enabled = False
+    CommandStop.Enabled = True
+    
+    DoEvents
+    
+    MeasureGamma     '测量数据
+    
+    CommandStop.Enabled = False
+    cmdBusyFlag = False
+
+End Sub
+Private Sub MeasureGamma()
+'----------------------------------------------------------------------------
+    Dim lVLocation As Long
+    Dim lHLocation As Long
+    Dim lVLocationMax As Long
+    Dim lHLocationMax As Long
+    Dim strMsg As String
+    
+    
+    On Error Resume Next
+    
+    WaitTime = Val(TextIntervalSec.Text) / 10#
+   
+    InitializeData
+   ' GridInit
+    
+    xyControl1.Visible = True
+    picGraph.Visible = False
+    
+    If SelectDataName <> "COLOR" Then
+        objCa.DisplayMode = DSP_LXY
+        lDisplayMode = DSP_LXY
+        SelectDataName = "COLOR"
+    End If
+    
+    If FormVisibleFlg = True Then
+        SetWin 255, 255, 255
+    Else
+        ' Set Window Pattern
+      '  objVGControl.Pattern = 1
+        ' Set Video Levle
+       ' objVGControl.SetGVideoLevel 255, 255, 255
+    End If
+    
+   
+    '=====================
+    ' Measure Start
+    '=====================
+'MeasureWhite:
+  
+        If ComState <> "" Then
+        LabelCom.Caption = ComState
+        Else: LabelCom = ""
+        End If
+        
+        xyControl1.Visible = True
+        picGraph.Visible = False
+        DoEvents
+        '-----------显示画面开始---------------------------
+        Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)    '参数1：阶数（0～2255）；参数2：全色画面（CLR_RED：全红，CLR_GREEN:全绿，CLR_BLUE:全蓝，CLR_WHITE:全灰）；参数3：rgb是否交换
+        SetWin 255, 255, 255
+        'If (xpartmeasure("W") = 1) Then
+        xpartmeasure "W"
+            If OutSpec.Tag = "Out" Then
+            MsgBox "————————        注意标记、区分不良品            ————————"
+            GoTo Testend
+            End If
+        
+        Call frmSet.comsendGrayNum(255, CLR_RED, rgbChange)
+        SetWin 255, 0, 0
+        xpartmeasure "R"
+            If OutSpec.Tag = "Out" Then
+                MsgBox "————————        注意标记、区分不良品            ————————"
+                GoTo Testend
+                End If
+            
+        Call frmSet.comsendGrayNum(255, CLR_GREEN, rgbChange)
+        SetWin 0, 255, 0
+        xpartmeasure ("G")
+            If OutSpec.Tag = "Out" Then
+                MsgBox "————————        注意标记、区分不良品            ————————"
+                GoTo Testend
+                End If
+            
+        Call frmSet.comsendGrayNum(255, CLR_BLUE, rgbChange)
+        SetWin 0, 0, 255
+        xpartmeasure "B"
+            If OutSpec.Tag = "Out" Then
+                MsgBox "————————        注意标记、区分不良品            ————————"
+                GoTo Testend
+                End If
+            
+        Call frmSet.comsendGrayNum(0, CLR_WHITE, rgbChange)
+        SetWin 0, 0, 0
+        xpartmeasure "D"
+            If OutSpec.Tag = "Out" Then
+                MsgBox "————————        注意标记、区分不良品            ————————"
+                GoTo Testend
+                End If
+        
+        
+        MsgBox "量测结束，更换产品", vbOKOnly
+        SetWin 255, 255, 255
+        TestCount = TestCount + 1
+        If (TestCount Mod 5) = 0 Then
+        SaveData 2 ''保存临时数据文件
+        End If
+      '-------------测试结束---------------------------------
+Testend:
+      OutSpec.Tag = ""
+      CommandMeasure.Enabled = False
+      Text_barcode.Text = ""  '清空Barcode栏
+      Text_barcode.SetFocus  ' 设定焦点于Barcode栏，等待输入
+    
+   
+End Sub
+Private Function xpartmeasure(ByVal rgbname As String) 'As Integer
+
+    With typCurrentMeasurementData
+       
+            If WaitTime = 0 Then
+            Else
+                SetWait
+            End If              '设定延时
+            
+            objCa.Measure       '量测数据
+            .dateColorData = Date
+            .timeColorData = Time
+            .lColorStatus = objProbe.RD
+            .ssx = objProbe.Sx
+            .ssy = objProbe.Sy
+            .sLv = objProbe.Lv
+            .sLvfL = objProbe.LvfL
+            .Sx = objProbe.X
+            .Sy = objProbe.Y
+            .Sz = objProbe.Z
+            .sud = objProbe.ud
+            .svd = objProbe.vd
+            .sduv = objProbe.duv
+            .LT = objProbe.T
+            'sWhiteGamma(lStep) = .Sy
+            
+            LabelDataVal(0).Caption = Format(.ssx, FORMAT_SXY)   '当前 x，y Lv显示
+            LabelDataVal(1).Caption = Format(.ssy, FORMAT_SXY)
+            LabelDataVal(2).Caption = Format(.sLv, FORMAT_LV)
+            DoEvents
+            
+            '----------添加x y Lv 数值范围判断-------
+            Select Case rgbname
+            Case "W"
+                    If .ssx < xmin Or .ssx > xmax Or .sLv < lvmin Then
+                    MsgBox "注意：" & Chr(13) + Chr(10) & "Warning：" & Chr(13) + Chr(10) & "けいこく：" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------" _
+                                                  & Chr(13) + Chr(10) & "-------------------      Data Err！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "------------------- W    数据异常！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "---------      今日は本当にいい天気ですね！     --------" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------", vbExclamation
+                    OutSpec.Tag = "Out"
+                    'OutSpec.Show
+                    'Me.Hide
+                    'xpartmeasure = 1
+                    Exit Function
+                    End If
+            Case "R"
+                    If .ssx < Rxmin Or .ssx > Rxmax Or .sLv < Rlvmin Then
+                    MsgBox "注意：" & Chr(13) + Chr(10) & "Warning：" & Chr(13) + Chr(10) & "けいこく：" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------" _
+                                                  & Chr(13) + Chr(10) & "-------------------      Data Err！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "------------------- R    数据异常！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "---------      今日は本当にいい天気ですね！     --------" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------", vbExclamation
+                    OutSpec.Tag = "Out"
+                    'OutSpec.Show
+                    'Me.Hide
+                    'xpartmeasure = 1
+                    Exit Function
+                    End If
+            Case "G"
+                    If .ssx < Gxmin Or .ssx > Gxmax Or .sLv < Glvmin Then
+                    MsgBox "注意：" & Chr(13) + Chr(10) & "Warning：" & Chr(13) + Chr(10) & "けいこく：" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------" _
+                                                  & Chr(13) + Chr(10) & "-------------------      Data Err！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "------------------- G    数据异常！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "---------      今日は本当にいい天気ですね！     --------" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------", vbExclamation
+                    OutSpec.Tag = "Out"
+                    'OutSpec.Show
+                    'Me.Hide
+                    'xpartmeasure = 1
+                    Exit Function
+                    End If
+            Case "B"
+                    If .ssx < Bxmin Or .ssx > Bxmax Or .sLv < Blvmin Then
+                    MsgBox "注意：" & Chr(13) + Chr(10) & "Warning：" & Chr(13) + Chr(10) & "けいこく：" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------" _
+                                                  & Chr(13) + Chr(10) & "-------------------      Data Err！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "------------------- B    数据异常！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "---------      今日は本当にいい天気ですね！     --------" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------", vbExclamation
+                    OutSpec.Tag = "Out"
+                    'OutSpec.Show
+                    'Me.Hide
+                    'xpartmeasure = 1
+                    Exit Function
+                    End If
+            Case "D"
+                    If .sLv > 2 Then
+                    MsgBox "注意：" & Chr(13) + Chr(10) & "Warning：" & Chr(13) + Chr(10) & "けいこく：" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------" _
+                                                  & Chr(13) + Chr(10) & "-------------------      Data Err！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "------------------- D    数据异常！      -----------------" _
+                                                  & Chr(13) + Chr(10) & "---------       今日は本当にいい天気ですね！      --------" _
+                                                  & Chr(13) + Chr(10) & "----------------------------------------------------------", vbExclamation
+                    OutSpec.Tag = "Out"
+                    'OutSpec.Show
+                    'Me.Hide
+                    'xpartmeasure = 1
+                    Exit Function
+                    End If
+            Case Else
+                    MsgBox "画面排序异常，请检查程序版本"
+            End Select
+            
+            '----------------------------------------
+            Call SetGammaData(ListNo, rgbname)          '  xyLv数据保存于csv窗口
+            If ListNo > 8 Then                                   '设定数据窗口内容超过目标行数后自动向上滚动
+                grdDataList.TopRow = grdDataList.TopRow + 1
+            End If
+            'Coln = Coln + 1
+            'If (Coln = 4) Then    'Coln 代表画面数量，一个循环里面所有画面数量的统计（放在一行里面）
+            ListNo = ListNo + 1
+            '‘Coln = 4
+            'End If
+            
+            If bStop = True Then        '设定停止标志位，以响应“Stop”按钮
+                Exit Function
+            End If
+       
+        xyControl1.Visible = True
+        'picGraph.Visible = True
+        DoEvents
+        
+    End With
+    'xpartmeasure = 0
+    'SetGraphData
+End Function
+'Private Sub Text_barcode_Change()
+'If (Len(Text_barcode.Text) = Len(Text_standard.Text)) And Len(Text_standard.Text) > 5 And (connectCA310ok = True) Then
+'CheckgrayValueText.Enabled = False
+'CommandMeasure.Enabled = True
+'CommandMeasure.SetFocus
+'Exit Sub
+'End If
+'End Sub
+Private Sub Text_barcode_KeyPress(KeyAscii As Integer)      '输入Barcode
+If (KeyAscii = 13) Then
+        If (Len(Text_barcode.Text) >= Len(Text_standard.Text)) Then   '
+           If (Len(Text_barcode.Text) = Len(Text_standard.Text)) Then
+           Else
+              Text_barcode.Text = Mid(Text_barcode.Text, Len(Text_barcode.Text) - n + 1, n)
+              'n为标准的barcode长度
+           End If
+        Else
+            MsgBox "Barcode异常，请确认！"
+            Text_barcode.SetFocus
+            Exit Sub
+        End If
+'CheckgrayValueText.Enabled = False  '
+CommandMeasure.Enabled = True
+'CommandMeasure.SetFocus
+Call CommandMeasure_Click
+End If
+End Sub
+Sub SetGammaData(ByVal LisNo As Integer, RGB As String)     '量测数据显示于主窗口统计表
+    
+    grdDataList.Row = LisNo
+    
+    grdDataList.Col = 1
+    grdDataList.Text = Text_barcode.Text
+    grdDataList.Col = 2
+    grdDataList.Text = RGB
+   ' grdDataList.Col = 3
+   ' grdDataList.Text = Format(typCurrentMeasurementData.Sz, "0.00")
+    grdDataList.Col = 4
+    grdDataList.Text = Format(typCurrentMeasurementData.ssx, FORMAT_SXY)
+    grdDataList.Col = 5
+    grdDataList.Text = Format(typCurrentMeasurementData.ssy, FORMAT_SXY)
+    grdDataList.Col = 6
+    grdDataList.Text = Format(typCurrentMeasurementData.sLv, FORMAT_LV)
+   ' grdDataList.Col = 7
+   ' grdDataList.Text = Format(typCurrentMeasurementData.sud, FORMAT_SXY)
+   ' grdDataList.Col = 8
+   ' grdDataList.Text = Format(typCurrentMeasurementData.svd, FORMAT_SXY)
+   ' grdDataList.Col = 9
+   ' If typCurrentMeasurementData.LT = -1 Then
+   '     grdDataList.Text = "-"
+   ' Else
+   '     grdDataList.Text = Format(typCurrentMeasurementData.LT, "00000")
+   ' End If
+   ' grdDataList.Col = 10
+   ' If typCurrentMeasurementData.LT = -1 Then
+   '     grdDataList.Text = "-"
+   ' Else
+   '     grdDataList.Text = Format(typCurrentMeasurementData.sduv, "+.000;-.000")
+   ' End If
+    grdDataList.Col = 8
+    grdDataList.Text = Format(typCurrentMeasurementData.dateColorData, "yyyy/mm/dd")
+    grdDataList.Col = 9
+    grdDataList.Text = Format(typCurrentMeasurementData.timeColorData, "hh:mm:ss")
+
+    xyControl1.AddXYGraphData CLng(ListNo)
+End Sub
+Sub GridInit()   '初始化界面上的数据统计表
     
     Dim i As Integer
     
@@ -833,7 +1298,7 @@ Sub GridInit()
     picGraph.Cls
     grdDataList.Clear
     
-    grdDataList.Cols = 13
+    grdDataList.Cols = 11
     xyControl1.Visible = True
     
     grdDataList.FocusRect = flexFocusHeavy
@@ -841,8 +1306,8 @@ Sub GridInit()
     grdDataList.Row = 0
     grdDataList.Col = 0: grdDataList.Text = "No."
     grdDataList.Col = 1: grdDataList.Text = "Barcode"
-    grdDataList.Col = 2: grdDataList.Text = "reserve1"
-    grdDataList.Col = 3: grdDataList.Text = "reserve2"
+    grdDataList.Col = 2: grdDataList.Text = "-M-"
+    grdDataList.Col = 3: grdDataList.Text = "reserve1"
     grdDataList.Col = 4: grdDataList.Text = "x"
     grdDataList.Col = 5: grdDataList.Text = "y"
     
@@ -857,19 +1322,19 @@ Sub GridInit()
     grdDataList.Col = 8: grdDataList.Text = "Date"
     grdDataList.Col = 9: grdDataList.Text = "Time"
     
-    grdDataList.ColWidth(0) = 420 '380   'No
+    grdDataList.ColWidth(0) = 460 '380   'No
     
-    grdDataList.ColWidth(1) = 1000   'Barcode
+    grdDataList.ColWidth(1) = 1600   'Barcode
     grdDataList.ColWidth(2) = 400   'reserve1
     grdDataList.ColWidth(3) = 400   'reserve2
     
     grdDataList.ColWidth(4) = 600   'x
     grdDataList.ColWidth(5) = 600   'y
-    grdDataList.ColWidth(6) = 950   'Lv
+    grdDataList.ColWidth(6) = 600   'Lv
     
     grdDataList.ColWidth(7) = 400   '--
-    grdDataList.ColWidth(8) = 1050  'Date
-    grdDataList.ColWidth(9) = 1000   'Time
+    grdDataList.ColWidth(8) = 1600  'Date
+    grdDataList.ColWidth(9) = 1600   'Time
     
     grdDataList.Col = 0
     For i = 1 To 10400
@@ -882,142 +1347,93 @@ Sub GridInit()
     grdDataList.TopRow = 1
 
 End Sub
-Sub SaveData()
+Private Sub Command_Saveas_Click()  '另存数据
+SaveData 0
+End Sub
+Private Sub CommandSave_Click()    '保存数据
+SaveData 1
+End Sub
 
-    Dim dd(5040, 10) As String   '
-    Dim i As Integer, j As Integer
-    Dim fm As String, fnum As Integer, fname As String
+Private Sub CommandStop_Click()
 
-    For i = 1 To ListNo - 1
-        grdDataList.Row = i
-        For j = 1 To 10
-            grdDataList.Col = j
-            dd(i, j) = grdDataList.Text
-        Next j
-    Next i
+    bStop = True
+
+End Sub
+Sub SaveData(SaveasFlag As Byte)  'SaveasFlag：0 选择保存路径；SaveasFlag= 1 以实际命名保存于程序所在目录，SaveasFlag=其他 临时保存数据于当前目录tepgamma.csv
+
+Dim dd(10400, 10) As String   '
+Dim i As Integer, j As Integer
+Dim fm As String, fnum As Integer, fname As String
+
+For i = 1 To ListNo - 1
+    grdDataList.Row = i
+    For j = 1 To 10
+        grdDataList.Col = j
+        dd(i, j) = grdDataList.Text
+    Next j
+Next i
     
-    If (SaveasFlag) Then
+If (SaveasFlag = 0) Then
+
+       On Error Resume Next
+       cmdDiag.CancelError = True
+       cmdDiag.FileName = ""
+       cmdDiag.Filter = "Data Files (*.csv)|*.csv"
+       cmdDiag.FilterIndex = 2
+       cmdDiag.Action = 2
     
-        On Error Resume Next
-        cmdDiag.CancelError = True
-         cmdDiag.FileName = ""
-         cmdDiag.Filter = "Data Files (*.csv)|*.csv"
-        cmdDiag.FilterIndex = 2
-        cmdDiag.Action = 2
-     
-         If Err.Number = cdlCancel Then
-             Exit Sub
-          Else
+        If Err.Number = cdlCancel Then
+        'SaveasFlag = False
+        Exit Sub
+        Else
         'fm = App.Path + "\" + Format(Now(), "yyyy-MM-dd") + Format(Now(), "-HHmmss") + "gamma.csv"
-             fm = cmdDiag.FileName
-             fm = Mid$(fm, 1, InStr(1, fm, ".")) + "csv"
-          End If
-       Else
-       fm = App.Path + "\" + Format(Now(), "yyyy-MM-dd") + Format(Now(), "-HHmmss") + "gamma.csv"
+            fm = cmdDiag.FileName
+            fm = Mid$(fm, 1, InStr(1, fm, ".")) + "csv"
+         End If
+Else
+        If (SaveasFlag = 1) Then
+             fm = App.Path + "\" + Format(Now(), "yyyy-MM-dd") + Format(Now(), "-HHmmss") + "gamma.csv"
             ' fm = cmdDiag.FileName
              'fm = Mid$(fm, 1, InStr(1, fm, ".")) + "csv"
-     End If
+         Else
+             fm = App.Path + "\" + "tepgamma.csv"
+         End If
+End If
     
-    fname = Dir$(fm, vbNormal Or vbReadOnly)
+fname = Dir$(fm, vbNormal Or vbReadOnly)
+
+If (SaveasFlag <= 1) Then  '若非自动保存数据，则不校验文件是否覆盖文件
     If fname <> "" Then
         If MsgBox(fname & " Overwrite. OK ?", vbOKCancel) = vbCancel Then Exit Sub
     Else
     End If
-    
-    fnum = FreeFile
-    Open fm For Output Access Write Shared As fnum
-    Print #fnum, "Gamma"
-    
-    ' 021225
-    ' Write #fnum, "No.", "X", "Y", "Z", "x", "y", "Lv", "ud", "vd", "T", "duv", "Date", "Time"
-    Write #fnum, "No.", "Barcode", "--", "--", "x", "y", gstrLvOrEv, "-", "Date", "Time"
-    
-    For i = 1 To ListNo - 1
-        Print #fnum, Format(i, "000"); ",";
-        For j = 1 To 9
-            Print #fnum, dd(i, j); ",";
-        Next j
-        Print #fnum, dd(i, 10)
-    Next i
-    
-    
-    Close fnum
-    SaveasFlag = False
+End If
+
+fnum = FreeFile
+Open fm For Output Access Write Shared As fnum
+Print #fnum, "Gamma"
+
+Write #fnum, "No.", "Barcode", "--", "--", "x", "y", gstrLvOrEv, "-", "Date", "Time"
+
+For i = 1 To ListNo - 1
+    Print #fnum, Format(i, "0000"); ",";
+    For j = 1 To 9
+        Print #fnum, dd(i, j); ",";
+    Next j
+    Print #fnum, dd(i, 10)
+Next i
+
+
+Close fnum
+SaveasFlag = False
 End Sub
-
-Private Sub CaControl1_Update()
-    objMemory.GetReferenceColor objProbe.ID, typCurrentRefereceData.sRefx, typCurrentRefereceData.sRefy, typCurrentRefereceData.sRefLv
-    LabelRefData(0).Caption = Round(typCurrentRefereceData.sRefx, 4)
-    LabelRefData(1).Caption = Round(typCurrentRefereceData.sRefy, 4)
-    LabelRefData(2).Caption = Round(typCurrentRefereceData.sRefLv, 4)
-    lDisplayMode = objCa.DisplayMode
-    Select Case lDisplayMode
-        Case DSP_LXY
-            SelectDataName = "COLOR"
-        Case DSP_DUV
-            SelectDataName = "COLOR"
-        Case DSP_ANL
-            SelectDataName = "COLOR"
-        Case DSP_ANLG
-            SelectDataName = "COLOR"
-        Case DSP_ANLR
-            SelectDataName = "COLOR"
-        Case DSP_PUV
-            SelectDataName = "COLOR"
- '       Case DSP_FMA
- '           SelectDataName = "FMA"
-        Case DSP_XYZ
-            SelectDataName = "COLOR"
-        Case Else
-'            SelectDataName = "JEITA"
-            SelectDataName = "COLOR"
-    End Select
-    GridInit
-    DoEvents
-    
-End Sub
-
-
 Private Sub CheckgrayValueText_Click()
 '锁定标准barcode输入框
 Text_standard.Locked = Not Text_standard.Locked
-    If (Text_standard.Locked = False) Then
+If (Text_standard.Locked = False) Then
     Text_standard.SetFocus
-    End If
-
-End Sub
-
-Private Sub Command_Saveas_Click()
-SaveasFlag = True
-SaveData
-End Sub
-
-
-Private Sub Labeleditxyz_dblClick()
-'Labeleditxyz.Caption = "Edit"
-editflag = editflag + 1
-If (editflag = 2) Then
-Text1(0).Locked = False
-Text1(1).Locked = False
-Text2(0).Locked = False
-Text2(1).Locked = False
-Text3(0).Locked = False
-Text3(1).Locked = False
-Labeleditxyz.Caption = "Save"
-Else
-    If (editflag = 3) Then
-    Text1(0).Locked = True
-    Text1(1).Locked = True
-    Text2(0).Locked = True
-    Text2(1).Locked = True
-    Text3(0).Locked = True
-    Text3(1).Locked = True
-    Labeleditxyz.Visible = False
-    Frame3.Caption = "标准已改:"
-    End If
 End If
 End Sub
-
 Private Sub Text_standard_KeyPress(KeyAscii As Integer)
 If (KeyAscii = 13) And (Len(Text_standard.Text) > 6) Then   'MsgBox "标准Barcode已录入"
 
@@ -1032,6 +1448,122 @@ n = Len(Text_standard.Text) '计算标准barcode长度，供后续直接调用
  Text_barcode.SetFocus
 End If
 End Sub
+Private Sub Labeleditxyz_dblClick()    '临时修改测试规格
+'Labeleditxyz.Caption = "Edit"
+Labeleditxyz.Tag = Labeleditxyz.Tag + "edit"
+If (Labeleditxyz.Tag = "editedit") Then
+Textcxyz(0).Locked = False
+Textcxyz(1).Locked = False
+Textcxyz(2).Locked = False
+Textcxyz(3).Locked = False
+Textcxyz(4).Locked = False
+Textcxyz(5).Locked = False
+Labeleditxyz.Caption = "S"
+Labeleditxyz.Tag = "ok"
+
+Else
+    If (Labeleditxyz.Tag = "okedit") Then    'ok+edit
+        Textcxyz(0).Locked = True
+        Textcxyz(1).Locked = True
+        Textcxyz(2).Locked = True
+        Textcxyz(3).Locked = True
+        Textcxyz(4).Locked = True
+        Textcxyz(5).Locked = True
+        
+        Labeleditxyz.Caption = "E"
+        Labeleditxyz.Visible = False
+        Frame3.Caption = "标准已改:"
+       ' Labeleditxyz.Tag = ""
+    End If
+    
+End If
+End Sub
+
+Private Sub Frame3_dblClick()
+CrgbSpecLoad
+End Sub
+Private Sub OptionRGB_Click(Index As Integer)
+
+'OutSpec.Show
+'If (Labeleditxyz.Tag = "") Then        '在未进入规格参数调整状态时候，依据option分别显示当前rGBW的规格值
+    If OptionRGB(0) Then               '依据option分别显示当前rGBW的规格值
+    Textcxyz(0).Text = Format(Rxmin, "0.0000")    'Format(rxmin, "0.0000")
+    Textcxyz(1).Text = Format(Rxmax, "0.0000")
+    Textcxyz(2).Text = Format(Rymin, "0.0000")
+    Textcxyz(3).Text = Format(Rymax, "0.0000")
+    Textcxyz(4).Text = Rlvmin
+    Textcxyz(5).Text = Rlvmax
+    End If
+    If OptionRGB(1) Then
+    Textcxyz(0).Text = Format(Gxmin, "0.0000")
+    Textcxyz(1).Text = Format(Gxmax, "0.0000")
+    Textcxyz(2).Text = Format(Gymin, "0.0000")
+    Textcxyz(3).Text = Format(Gymax, "0.0000")
+    Textcxyz(4).Text = Glvmin
+    Textcxyz(5).Text = Glvmax
+    End If
+    If OptionRGB(2) Then
+    Textcxyz(0).Text = Format(Bxmin, "0.0000")
+    Textcxyz(1).Text = Format(Bxmax, "0.0000")
+    Textcxyz(2).Text = Format(Bymin, "0.0000")
+    Textcxyz(3).Text = Format(Bymax, "0.0000")
+    Textcxyz(4).Text = Blvmin
+    Textcxyz(5).Text = Blvmax
+    End If
+    If OptionRGB(3) Then
+    Textcxyz(0).Text = Format(xmin, "0.0000")
+    Textcxyz(1).Text = Format(xmax, "0.0000")
+    Textcxyz(2).Text = Format(ymin, "0.0000")
+    Textcxyz(3).Text = Format(ymax, "0.0000")
+    Textcxyz(4).Text = lvmin
+    Textcxyz(5).Text = lvmax
+    End If
+'End If
+End Sub
+
+Private Sub Textcxyz_LostFocus(Index As Integer)   '当RGB规格显示文本框数据改变后，因失去焦点会自动保存
+    If (Labeleditxyz.Tag = "ok") Or (Labeleditxyz.Tag = "okedit") Then    '本判断纯粹多余
+        If OptionRGB(0) Then     'option为R 时：
+        Rxmin = Val(Textcxyz(0).Text)
+        Rxmax = Val(Textcxyz(1).Text)
+        Rymin = Val(Textcxyz(2).Text)
+        Rymax = Val(Textcxyz(3).Text)
+        Rlvmin = Val(Textcxyz(4).Text)
+        Rlvmax = Val(Textcxyz(5).Text)
+        End If
+        If OptionRGB(1) Then
+        Gxmin = Val(Textcxyz(0).Text)
+        Gxmax = Val(Textcxyz(1).Text)
+        Gymin = Val(Textcxyz(2).Text)
+        Gymax = Val(Textcxyz(3).Text)
+        Glvmin = Val(Textcxyz(4).Text)
+        Glvmax = Val(Textcxyz(5).Text)
+        End If
+        If OptionRGB(2) Then
+        Bxmin = Val(Textcxyz(0).Text)
+        Bxmax = Val(Textcxyz(1).Text)
+        Bymin = Val(Textcxyz(2).Text)
+        Bymax = Val(Textcxyz(3).Text)
+        Blvmin = Val(Textcxyz(4).Text)
+        Blvmax = Val(Textcxyz(5).Text)
+        End If
+        If OptionRGB(3) Then
+        xmin = Val(Textcxyz(0).Text)
+        xmax = Val(Textcxyz(1).Text)
+        ymin = Val(Textcxyz(2).Text)
+        ymax = Val(Textcxyz(3).Text)
+        lvmin = Val(Textcxyz(4).Text)
+        lvmax = Val(Textcxyz(5).Text)
+        End If
+    End If
+End Sub
+'Private Sub Textcxyz_KeyPress(KeyAscii As Integer)
+'Select Case KeyAscii
+' Case 48 To 57
+' Case Else
+'  KeyAscii = 0
+'End Select
+'End Sub
 
 Private Sub Command0Cal_Click()
     On Error GoTo E
@@ -1096,45 +1628,6 @@ CheckgrayValueText.SetFocus
 'FormGamma.Text_barcode.SetFocus
 End Sub
 
-Private Sub CommandMeasure_Click()
-    Dim bResult As Boolean
-    'CMD1Text.FontSize = 12
-    
-    'gammaTestMode.Enabled = False
-    ' 030407
-    If objCa.DisplayMode <> COLOR_MODE Then
-        objCa.DisplayMode = DSP_LXY
-    End If
-    
-    cmdBusyFlag = True
-    
-   ' cmdWin.Enabled = False
-    bStop = False
-    CommandMeasure.Enabled = False
-    CommandStop.Enabled = True
-    
-    DoEvents
-    
-    MeasureGamma
-    
-    CommandStop.Enabled = False
-    cmdBusyFlag = False
-
-End Sub
-
-Private Sub CommandSave_Click()
-    
-    SaveData
-
-End Sub
-
-
-Private Sub CommandStop_Click()
-
-    bStop = True
-
-End Sub
-
 Private Sub comSett_Click()
 frmSet.Show  'vbModal
 End Sub
@@ -1166,75 +1659,7 @@ Private Sub Form_Activate()
     End If
 
 End Sub
-Private Sub Form_Load()
-Text1(0).Text = Format(xmin, "0.0000")
-Text1(1).Text = Format(xmax, "0.0000")
-Text2(0).Text = Format(ymin, "0.0000")
-Text2(1).Text = Format(ymax, "0.0000")
-Text3(0).Text = lvmin
-Text3(1).Text = lvmax
-Text1(0).Locked = True
-Text1(1).Locked = True
-Text2(0).Locked = True
-Text2(1).Locked = True
-Text3(0).Locked = True
-Text3(1).Locked = True
-editflag = 0
-dubuggFlag = 0
-SaveasFlag = False
-m = 0
-'Coln = 0
-grayNumflag = 0
-cmdBusyFlag = True
-'Call grayValueText_Change
-'Unload frmSet
-'MeasureGamma
-CheckgrayValueText.Enabled = False
-FrameRefData.Enabled = False
-'Label4.Caption = ""
-Set mycomm = frmSet.MSComm1
-If (mycomm.PortOpen = True) Then
-    
-      imgledon.Visible = True
-      imgledoff.Visible = False
-      
-      
-     Else
-          'imgledon.Visible = False
-          'imgledoff.Visible = True
-        On Error Resume Next
-         frmSet.MSComm1.PortOpen = True
-         If (frmSet.MSComm1.PortOpen = False) Then
-         imgledon.Visible = False
-         imgledoff.Visible = True
-         
-         MsgBox "请先确认本机串口可以正常工作", vbExclamation + vbOKOnly, "友情提醒"
-       End If
-End If
 
-'Label2.Caption = "上述数据以0开始、以255结尾，数据间以逗号分隔"
-'Me.AcceptButton = Me.CommandCconnect
-'Me.CommandConnect.SetFocus
-CommandConnect.BackColor = vbRed
-Command0Cal.Enabled = False
-CommandMeasure.Enabled = False
-CheckgrayValueText.Value = Checked
-'CommandmanualMeasure.Enabled = False
-CommandCloseConnect.Enabled = False
-'Picture1.Visible = False
-' ColorRgb2Bgr.Enabled = False
- rgbChange = False
-Label_readme = "首先(连接CA310)，然后：" & vbCrLf & "1, 解锁并输入当前批次任一Barcode作为标准后再次锁定" & vbCrLf & _
-                "2, 确认LCD显示后，放置好CA310探头" & vbCrLf & _
-                "3, 扫描产品Barcode之后，会自动进行测量"
-Label5.Caption = App.Major & "." & App.Minor & "." & App.Revision
-GridInit
-CommandConnect.Enabled = True
-'CommandConnect.SetFocus
-Text_barcode.Text = ""
-CommandSave.Enabled = False
-Text_barcode.Enabled = False
-End Sub
 
 Public Sub xForm_Initialize()
    ' Dim ComPortNo As Long, ErrCheck As Boolean
@@ -1255,7 +1680,7 @@ Public Sub xForm_Initialize()
     lDisplayMode = objCa.DisplayMode
     SelectDataName = "COLOR"
     
-    GridInit
+    'GridInit
     xyControl1.Visible = True
     
     'CommandMeasure.Enabled = True
@@ -1280,7 +1705,7 @@ E:
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-   SaveData  '直接退出自动保存数据
+   SaveData 1        '直接退出自动保存数据
    MsgBox "数据已经以时间命名保存于当前程序目录", vbOKOnly  '给出保存提示
    Unload frmSet
    Unload FormStart
@@ -1306,9 +1731,6 @@ End Sub
 Private Sub Form_Unload(Cancel As Integer)
   End
 End Sub
-
-
-
 Public Sub SetCurrentData()
     Select Case lDataType
         Case DSP_LXY
@@ -1406,6 +1828,37 @@ Public Sub SetCurrentData()
 End Sub
 '
 
+Private Sub CaControl1_Update()
+    objMemory.GetReferenceColor objProbe.ID, typCurrentRefereceData.sRefx, typCurrentRefereceData.sRefy, typCurrentRefereceData.sRefLv
+    LabelRefData(0).Caption = Round(typCurrentRefereceData.sRefx, 4)
+    LabelRefData(1).Caption = Round(typCurrentRefereceData.sRefy, 4)
+    LabelRefData(2).Caption = Round(typCurrentRefereceData.sRefLv, 4)
+    lDisplayMode = objCa.DisplayMode
+    Select Case lDisplayMode
+        Case DSP_LXY
+            SelectDataName = "COLOR"
+        Case DSP_DUV
+            SelectDataName = "COLOR"
+        Case DSP_ANL
+            SelectDataName = "COLOR"
+        Case DSP_ANLG
+            SelectDataName = "COLOR"
+        Case DSP_ANLR
+            SelectDataName = "COLOR"
+        Case DSP_PUV
+            SelectDataName = "COLOR"
+ '       Case DSP_FMA
+ '           SelectDataName = "FMA"
+        Case DSP_XYZ
+            SelectDataName = "COLOR"
+        Case Else
+'            SelectDataName = "JEITA"
+            SelectDataName = "COLOR"
+    End Select
+    GridInit
+    DoEvents
+    
+End Sub
 
 
 Private Sub grdDataList_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -1434,11 +1887,6 @@ Private Sub grdDataList_MouseUp(Button As Integer, Shift As Integer, X As Single
             End If
         Next L
     End If
-End Sub
-
-
-Private Sub LabelView_Click()
-
 End Sub
 
 Private Sub TextIntervalSec_KeyPress(KeyAscii As Integer)
@@ -1511,47 +1959,24 @@ Private Sub UpDownCurrentData_UpClick()
     SetCurrentData
 
 End Sub
-
-Sub SetGammaData(ByVal LisNo As Integer, RGB As String)
+Sub SetGraphData()
+    Dim i As Integer, j As Integer
     
-    grdDataList.Row = LisNo
+    'If lMeasureSpec = MSR_256 Then
+   '     j = lMeasureSpec - 1
+   ' Else
+        j = lMeasureSpec
+    'End If
+    For i = 0 To j
+        Mydata(i + 1, 1) = sRedGamma(i)
+        Mydata(i + 1, 2) = sGreenGamma(i)
+        Mydata(i + 1, 3) = sBlueGamma(i)
+        Mydata(i + 1, 4) = sWhiteGamma(i)
+    Next i
     
-    grdDataList.Col = 1
-    grdDataList.Text = Text_barcode.Text
-    grdDataList.Col = 2
-    grdDataList.Text = RGB
-   ' grdDataList.Col = 3
-   ' grdDataList.Text = Format(typCurrentMeasurementData.Sz, "0.00")
-    grdDataList.Col = 4
-    grdDataList.Text = Format(typCurrentMeasurementData.ssx, FORMAT_SXY)
-    grdDataList.Col = 5
-    grdDataList.Text = Format(typCurrentMeasurementData.ssy, FORMAT_SXY)
-    grdDataList.Col = 6
-    grdDataList.Text = Format(typCurrentMeasurementData.sLv, FORMAT_LV)
-   ' grdDataList.Col = 7
-   ' grdDataList.Text = Format(typCurrentMeasurementData.sud, FORMAT_SXY)
-   ' grdDataList.Col = 8
-   ' grdDataList.Text = Format(typCurrentMeasurementData.svd, FORMAT_SXY)
-   ' grdDataList.Col = 9
-   ' If typCurrentMeasurementData.LT = -1 Then
-   '     grdDataList.Text = "-"
-   ' Else
-   '     grdDataList.Text = Format(typCurrentMeasurementData.LT, "00000")
-   ' End If
-   ' grdDataList.Col = 10
-   ' If typCurrentMeasurementData.LT = -1 Then
-   '     grdDataList.Text = "-"
-   ' Else
-   '     grdDataList.Text = Format(typCurrentMeasurementData.sduv, "+.000;-.000")
-   ' End If
-    grdDataList.Col = 8
-    grdDataList.Text = Format(typCurrentMeasurementData.dateColorData, "yyyy/mm/dd")
-    grdDataList.Col = 9
-    grdDataList.Text = Format(typCurrentMeasurementData.timeColorData, "hh:mm:ss")
-
-    xyControl1.AddXYGraphData CLng(ListNo)
+    SetGraph
+    
 End Sub
-
 
 Public Sub SetGraph()
     
@@ -1701,164 +2126,7 @@ ER:
     Return
 End Sub
 
-Private Sub MeasureGamma()
 
-    Dim lVLocation As Long
-    Dim lHLocation As Long
-    Dim lVLocationMax As Long
-    Dim lHLocationMax As Long
-    Dim strMsg As String
-    
-    
-    On Error Resume Next
-    
-    WaitTime = Val(TextIntervalSec.Text) / 10#
-   
-    InitializeData
-   ' GridInit
-    
-    xyControl1.Visible = True
-    picGraph.Visible = False
-    
-    If SelectDataName <> "COLOR" Then
-        objCa.DisplayMode = DSP_LXY
-        lDisplayMode = DSP_LXY
-        SelectDataName = "COLOR"
-    End If
-    
-    If FormVisibleFlg = True Then
-        SetWin 255, 255, 255
-    Else
-        ' Set Window Pattern
-      '  objVGControl.Pattern = 1
-        ' Set Video Levle
-       ' objVGControl.SetGVideoLevel 255, 255, 255
-    End If
-    
-   
-    '=====================
-    ' Measure Start
-    '=====================
-'MeasureWhite:
-  
-        If ComState <> "" Then
-        LabelCom.Caption = ComState
-        Else: LabelCom = ""
-        End If
-        
-        xyControl1.Visible = True
-        picGraph.Visible = False
-        DoEvents
-        '-----------显示画面开始---------------------------
-        Call frmSet.comsendGrayNum(255, CLR_WHITE, rgbChange)    '参数1：阶数（0～2255）；参数2：全色画面（CLR_RED：全红，CLR_GREEN:全绿，CLR_BLUE:全蓝，CLR_WHITE:全灰）；参数3：rgb是否交换
-        SetWin 255, 255, 255
-        xpartmeasure "W"
-        Call frmSet.comsendGrayNum(255, CLR_RED, rgbChange)
-        SetWin 255, 0, 0
-        xpartmeasure "R"
-        Call frmSet.comsendGrayNum(255, CLR_GREEN, rgbChange)
-        SetWin 0, 255, 0
-        xpartmeasure ("G")
-        Call frmSet.comsendGrayNum(255, CLR_BLUE, rgbChange)
-        SetWin 0, 0, 255
-        xpartmeasure "B"
-        Call frmSet.comsendGrayNum(0, CLR_WHITE, rgbChange)
-        SetWin 0, 0, 0
-        xpartmeasure "D"
-        
-        MsgBox "量测结束，更换产品", vbOKOnly
-        SetWin 255, 255, 255
-      '-------------测试结束---------------------------------
-      CommandMeasure.Enabled = False
-      Text_barcode.Text = ""  '清空Barcode栏
-      Text_barcode.SetFocus  ' 设定焦点于Barcode栏，等待输入
-   
-   
-End Sub
-Private Sub xpartmeasure(ByVal rgbname As String)
-
-    With typCurrentMeasurementData
-       
-            If WaitTime = 0 Then
-            Else
-                SetWait
-            End If              '设定延时
-            
-            objCa.Measure       '量测数据
-            .dateColorData = Date
-            .timeColorData = Time
-            .lColorStatus = objProbe.RD
-            .ssx = objProbe.Sx
-            .ssy = objProbe.Sy
-            .sLv = objProbe.Lv
-            .sLvfL = objProbe.LvfL
-            .Sx = objProbe.X
-            .Sy = objProbe.Y
-            .Sz = objProbe.Z
-            .sud = objProbe.ud
-            .svd = objProbe.vd
-            .sduv = objProbe.duv
-            .LT = objProbe.T
-            'sWhiteGamma(lStep) = .Sy
-            
-            LabelDataVal(0).Caption = Format(.ssx, FORMAT_SXY)   '当前 x，y Lv显示
-            LabelDataVal(1).Caption = Format(.ssy, FORMAT_SXY)
-            LabelDataVal(2).Caption = Format(.sLv, FORMAT_LV)
-            DoEvents
-            
-            '----------添加x y Lv 数值范围判断-------
-            
-            
-            
-            '----------------------------------------
-            Call SetGammaData(ListNo, rgbname)      '  xyLv数据保存于csv窗口
-            If ListNo > 8 Then                                   '设定数据窗口内容超过目标行数后自动向上滚动
-                grdDataList.TopRow = grdDataList.TopRow + 1
-            End If
-            'Coln = Coln + 1
-            'If (Coln = 4) Then    'Coln 代表画面数量，一个循环里面所有画面数量的统计（放在一行里面）
-            ListNo = ListNo + 1
-            '‘Coln = 4
-            'End If
-            
-            If bStop = True Then        '设定停止标志位，以响应“Stop”按钮
-                Exit Sub
-            End If
-       
-        xyControl1.Visible = True
-        'picGraph.Visible = True
-        DoEvents
-        
-    End With
-    'SetGraphData
-End Sub
-'Private Sub Text_barcode_Change()
-'If (Len(Text_barcode.Text) = Len(Text_standard.Text)) And Len(Text_standard.Text) > 5 And (connectCA310ok = True) Then
-'CheckgrayValueText.Enabled = False
-'CommandMeasure.Enabled = True
-'CommandMeasure.SetFocus
-'Exit Sub
-'End If
-'End Sub
-Private Sub Text_barcode_KeyPress(KeyAscii As Integer)
-If (KeyAscii = 13) Then
-        If (Len(Text_barcode.Text) >= Len(Text_standard.Text)) Then   '
-           If (Len(Text_barcode.Text) = Len(Text_standard.Text)) Then
-           Else
-              Text_barcode.Text = Mid(Text_barcode.Text, Len(Text_barcode.Text) - n + 1, n)
-              'n为标准的barcode长度
-           End If
-        Else
-            MsgBox "Barcode异常，请确认！"
-            Text_barcode.SetFocus
-            Exit Sub
-        End If
-'CheckgrayValueText.Enabled = False  '
-CommandMeasure.Enabled = True
-'CommandMeasure.SetFocus
-Call CommandMeasure_Click
-End If
-End Sub
 
 Public Sub InitializeData()
     Dim i As Integer

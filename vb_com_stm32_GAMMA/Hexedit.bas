@@ -8,7 +8,7 @@ Public Const CLR_GREEN As Long = 1
 Public Const CLR_BLUE As Long = 2
 Public Const CLR_WHITE As Long = 3
 
-Public dubuggFlag As Byte   '计数双击次数
+'Public dubuggFlag As Byte   '计数双击次数
 Public m, grayNumflag As Integer 'm计数待发送灰阶数组长度，grayNumflag计数gamma画面时灰阶显示次数
 Public gstr()
 

@@ -6,7 +6,7 @@ Begin VB.Form FormStart
    ClientLeft      =   0
    ClientTop       =   0
    ClientWidth     =   7560
-   Icon            =   "start.frx":0000
+   Icon            =   "FormStart.frx":0000
    LinkTopic       =   "Form1"
    ScaleHeight     =   1935
    ScaleWidth      =   7560
