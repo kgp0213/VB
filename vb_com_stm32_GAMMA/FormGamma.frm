@@ -1247,8 +1247,8 @@ If (KeyAscii = 13) Then
         End If
 'CheckgrayValueText.Enabled = False  '
 CommandMeasure.Enabled = True
-'CommandMeasure.SetFocus
-Call CommandMeasure_Click
+CommandMeasure.SetFocus
+'Call CommandMeasure_Click
 End If
 End Sub
 Sub SetGammaData(ByVal LisNo As Integer, RGB As String)     '量测数据显示于主窗口统计表
@@ -1328,9 +1328,9 @@ Sub GridInit()   '初始化界面上的数据统计表
     grdDataList.ColWidth(2) = 400   'reserve1
     grdDataList.ColWidth(3) = 400   'reserve2
     
-    grdDataList.ColWidth(4) = 600   'x
-    grdDataList.ColWidth(5) = 600   'y
-    grdDataList.ColWidth(6) = 600   'Lv
+    grdDataList.ColWidth(4) = 800   'x
+    grdDataList.ColWidth(5) = 800   'y
+    grdDataList.ColWidth(6) = 800   'Lv
     
     grdDataList.ColWidth(7) = 400   '--
     grdDataList.ColWidth(8) = 1600  'Date
